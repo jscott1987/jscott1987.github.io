@@ -155,7 +155,6 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
   .oeh-note{margin:16px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.45;color:#5c5c5c}
   .oeh-foot{padding:14px 22px 18px;border-top:1px solid rgba(18,22,30,.08);font-size:14px;line-height:1.4;color:rgba(18,22,30,.72)}
   .oeh-foot a{color:#1a1a1a;font-weight:700;font-size:18px;text-decoration:underline}
-  .oel-results{padding:0}
 
 
   :root{
@@ -1366,10 +1365,9 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
     background: radial-gradient(circle at 30% 30%, #fff, #19b36b);
   }
 
-  .oel-results{ display:none; padding: 0; background: rgba(255,255,255,.98); }
+  .oel-results{ display:none; padding: 28px 32px 32px; background: rgba(255,255,255,.98); }
   .oeh-foot{padding:14px 22px 18px;border-top:1px solid rgba(18,22,30,.08);font-size:14px;line-height:1.4;color:rgba(18,22,30,.72)}
   .oeh-foot a{color:#1a1a1a;font-weight:700;font-size:18px;text-decoration:underline}
-  .oel-results{padding:0}
 
   .oel-resultsBadge{
     display:inline-flex; align-items:center; gap: 10px;
