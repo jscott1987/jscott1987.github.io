@@ -127,7 +127,7 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
       </div>
     </section>
 
-    <section id="oel_view_results" class="oel_view oel_results" aria-live="polite">
+    <section id="oel_view_results" class="oel_view oel_results" aria-live="polite" style="display:none">
       <div class="oeh-result">
         <p class="oeh-kicker">Quote request</p>
         <h2>Your information was received.</h2>
@@ -1123,7 +1123,7 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
     </section>
 
     <!-- RESULTS VIEW (ONLY this remains after 8s) -->
-    <section id="oel-results" class="oel-results" aria-live="polite">
+    <section id="oel-results" class="oel-results" aria-live="polite" style="display:none">
       <div class="oeh-result">
         <p class="oeh-kicker">Quote request</p>
         <h2>Your information was received.</h2>
@@ -1629,8 +1629,8 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
   setTimeout(() => {
     cancelAnimationFrame(raf);
     setProgress(100);
-    processing.style.display = "none";
-    results.style.display = "block";
+    if (processing) processing.style.display = "none";
+    if (results) results.style.display = "block";
   }, TOTAL);
 })();
 <\/script>
