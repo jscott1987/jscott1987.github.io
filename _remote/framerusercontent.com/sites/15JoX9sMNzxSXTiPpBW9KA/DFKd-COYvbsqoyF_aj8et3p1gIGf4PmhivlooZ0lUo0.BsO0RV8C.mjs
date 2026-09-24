@@ -128,15 +128,32 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
     </section>
 
         <section id="oel_view_results" class="oel_view oel_results" aria-live="polite" style="display:none">
-      <div class="oeh-result">
-        <p class="oeh-kicker">Quote request</p>
-        <h2>Your information was received.</h2>
-        <p class="oeh-lead">A licensed agent can review plan options, price, and enrollment for your area.</p>
-        <dl class="oeh-facts">
-          <div><dt>Next step</dt><dd>Call to review plans available where you live.</dd></div>
-          <div><dt>Phone</dt><dd><a href="tel:+12394232552">239-423-2552</a></dd></div>
-        </dl>
-        <p class="oeh-note">Plan availability and price vary by location and eligibility. Calling does not enroll you in a plan.</p>
+      <div class="oeh-out">
+        <p class="oeh-out-k">Open Enrollment Health</p>
+        <h2>Plans reviewed for your area</h2>
+        <p class="oeh-out-lead">A licensed agent can walk through price, coverage, and enrollment for the answers you gave. This review does not enroll you.</p>
+        <div class="oeh-out-grid">
+          <div>
+            <h3>From your quote</h3>
+            <ul>
+              <li><span>Coverage</span><b id="oeh-a-type">Individual or Family</b></li>
+              <li><span>Age</span><b id="oeh-a-age">—</b></li>
+              <li><span>Household income</span><b id="oeh-a-income">—</b></li>
+              <li id="oeh-a-state-row" style="display:none"><span>State</span><b id="oeh-a-state"></b></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Carriers checked</h3>
+            <ul>
+              <li><span>UnitedHealthcare</span><b>Reviewed</b></li>
+              <li><span>Ambetter</span><b>Reviewed</b></li>
+              <li><span>Blue Cross Blue Shield</span><b>Reviewed</b></li>
+              <li><span>Aetna</span><b>Reviewed</b></li>
+              <li><span>Cigna</span><b>Reviewed</b></li>
+            </ul>
+          </div>
+        </div>
+        <p class="oeh-out-call">Call <a href="tel:+12394232552">239-423-2552</a></p>
       </div>
     </section>
   </div>
@@ -153,6 +170,20 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
   .oeh-facts dd{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px}
   .oeh-facts a{color:#1a1a1a;font-weight:700;text-decoration:underline}
   .oeh-note{margin:16px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.45;color:#5c5c5c}
+  .oeh-out{box-sizing:border-box;padding:28px 32px 24px;color:#1a1a1a;font-family:Arial,Helvetica,sans-serif}
+  .oeh-out-k{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5c5c5c}
+  .oeh-out h2{margin:0;font-size:28px;font-weight:700;letter-spacing:-0.02em;line-height:1.2}
+  .oeh-out-lead{margin:10px 0 0;font-size:15px;line-height:1.45;color:#3a3a3a}
+  .oeh-out-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:22px}
+  .oeh-out h3{margin:0 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#5c5c5c;font-weight:700}
+  .oeh-out ul{list-style:none;margin:0;padding:0}
+  .oeh-out li{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid #e4e4e1;font-size:14px}
+  .oeh-out li span{color:#5c5c5c}
+  .oeh-out li b{font-weight:600;text-align:right}
+  .oeh-out-call{margin:18px 0 0;padding-top:16px;border-top:1px solid #e4e4e1;font-size:15px}
+  .oeh-out-call a{color:#1a1a1a;font-weight:700;font-size:20px;text-decoration:underline}
+  @media(max-width:700px){.oeh-out{padding:20px 16px}.oeh-out-grid{grid-template-columns:1fr}}
+
   .oeh-foot{padding:14px 22px 18px;border-top:1px solid rgba(18,22,30,.08);font-size:14px;line-height:1.4;color:rgba(18,22,30,.72)}
   .oeh-foot a{color:#1a1a1a;font-weight:700;font-size:18px;text-decoration:underline}
 
@@ -988,6 +1019,15 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
     setProgress(100);
     if(processing) processing.style.display = "none";
     if(results){
+      try {
+        var quote = JSON.parse(sessionStorage.getItem("oeh-quote") || "{}");
+        function put(id, v){ var el = document.getElementById(id); if (el && v) el.textContent = v; }
+        put("oeh-a-type", quote.coverage);
+        put("oeh-a-age", quote.age);
+        put("oeh-a-income", quote.income);
+        if (quote.state) { put("oeh-a-state", quote.state); var row = document.getElementById("oeh-a-state-row"); if (row) row.style.display = "flex"; }
+      } catch (err) {}
+
       results.style.display = "flex";
     }
   }, TOTAL);
@@ -1128,15 +1168,32 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
 
     <!-- RESULTS VIEW (ONLY this remains after 8s) -->
         <section id="oel-results" class="oel-results" aria-live="polite" style="display:none">
-      <div class="oeh-result">
-        <p class="oeh-kicker">Quote request</p>
-        <h2>Your information was received.</h2>
-        <p class="oeh-lead">A licensed agent can review plan options, price, and enrollment for your area.</p>
-        <dl class="oeh-facts">
-          <div><dt>Next step</dt><dd>Call to review plans available where you live.</dd></div>
-          <div><dt>Phone</dt><dd><a href="tel:+12394232552">239-423-2552</a></dd></div>
-        </dl>
-        <p class="oeh-note">Plan availability and price vary by location and eligibility. Calling does not enroll you in a plan.</p>
+      <div class="oeh-out">
+        <p class="oeh-out-k">Open Enrollment Health</p>
+        <h2>Plans reviewed for your area</h2>
+        <p class="oeh-out-lead">A licensed agent can walk through price, coverage, and enrollment for the answers you gave. This review does not enroll you.</p>
+        <div class="oeh-out-grid">
+          <div>
+            <h3>From your quote</h3>
+            <ul>
+              <li><span>Coverage</span><b id="oeh-a-type">Individual or Family</b></li>
+              <li><span>Age</span><b id="oeh-a-age">—</b></li>
+              <li><span>Household income</span><b id="oeh-a-income">—</b></li>
+              <li id="oeh-a-state-row" style="display:none"><span>State</span><b id="oeh-a-state"></b></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Carriers checked</h3>
+            <ul>
+              <li><span>UnitedHealthcare</span><b>Reviewed</b></li>
+              <li><span>Ambetter</span><b>Reviewed</b></li>
+              <li><span>Blue Cross Blue Shield</span><b>Reviewed</b></li>
+              <li><span>Aetna</span><b>Reviewed</b></li>
+              <li><span>Cigna</span><b>Reviewed</b></li>
+            </ul>
+          </div>
+        </div>
+        <p class="oeh-out-call">Call <a href="tel:+12394232552">239-423-2552</a></p>
       </div>
     </section>
   </div>
@@ -1365,7 +1422,21 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
     background: radial-gradient(circle at 30% 30%, #fff, #19b36b);
   }
 
-  .oel-results{ display:none; padding: 28px 32px 32px; background: rgba(255,255,255,.98); }
+  .oel-results{ display:none; padding: 0; background: #fff; }
+  .oeh-out{box-sizing:border-box;padding:28px 32px 24px;color:#1a1a1a;font-family:Arial,Helvetica,sans-serif}
+  .oeh-out-k{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5c5c5c}
+  .oeh-out h2{margin:0;font-size:28px;font-weight:700;letter-spacing:-0.02em;line-height:1.2}
+  .oeh-out-lead{margin:10px 0 0;font-size:15px;line-height:1.45;color:#3a3a3a}
+  .oeh-out-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:22px}
+  .oeh-out h3{margin:0 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#5c5c5c;font-weight:700}
+  .oeh-out ul{list-style:none;margin:0;padding:0}
+  .oeh-out li{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid #e4e4e1;font-size:14px}
+  .oeh-out li span{color:#5c5c5c}
+  .oeh-out li b{font-weight:600;text-align:right}
+  .oeh-out-call{margin:18px 0 0;padding-top:16px;border-top:1px solid #e4e4e1;font-size:15px}
+  .oeh-out-call a{color:#1a1a1a;font-weight:700;font-size:20px;text-decoration:underline}
+  @media(max-width:700px){.oeh-out{padding:20px 16px}.oeh-out-grid{grid-template-columns:1fr}}
+
   .oeh-foot{padding:14px 22px 18px;border-top:1px solid rgba(18,22,30,.08);font-size:14px;line-height:1.4;color:rgba(18,22,30,.72)}
   .oeh-foot a{color:#1a1a1a;font-weight:700;font-size:18px;text-decoration:underline}
 
@@ -1638,7 +1709,18 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
     cancelAnimationFrame(raf);
     setProgress(100);
     if (processing) processing.style.display = "none";
-    if (results) results.style.display = "block";
+    if (results) {
+      try {
+        var quote = JSON.parse(sessionStorage.getItem("oeh-quote") || "{}");
+        function put(id, v){ var el = document.getElementById(id); if (el && v) el.textContent = v; }
+        put("oeh-a-type", quote.coverage);
+        put("oeh-a-age", quote.age);
+        put("oeh-a-income", quote.income);
+        if (quote.state) { put("oeh-a-state", quote.state); var row = document.getElementById("oeh-a-state-row"); if (row) row.style.display = "flex"; }
+      } catch (err) {}
+
+      results.style.display = "block";
+    }
   }, TOTAL);
 })();
 <\/script>
