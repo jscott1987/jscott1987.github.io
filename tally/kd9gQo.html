@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your New Health Plan Is Just a Click Away</title>
+  <style>
+    html, body { margin: 0; padding: 0; background: #FFFFFF; color: #000000; font-family: Inter, system-ui, sans-serif; }
+    body { min-height: 100%; }
+    .wrap { max-width: 600px; padding: 8px 0 48px; }
+    .progress { height: 4px; background: #eee; margin: 0 0 28px; }
+    .progress > i { display: block; height: 100%; background: #FF7100; width: 0; transition: width .25s ease; }
+    h1 { font-size: 28px; line-height: 1.2; font-weight: 700; margin: 0 0 8px; }
+    .sub { font-size: 16px; margin: 0 0 28px; color: #111; }
+    .q { font-size: 20px; font-weight: 600; margin: 0 0 16px; color: rgb(17, 17, 17); }
+    .opts { display: flex; flex-direction: column; gap: 10px; }
+    button.opt, button.next {
+      appearance: none; border: 1px solid #d0d0d0; background: #fff; color: #000;
+      border-radius: 8px; padding: 14px 16px; font-size: 16px; text-align: left; cursor: pointer;
+    }
+    button.opt:hover { border-color: #0070D7; }
+    button.opt[aria-pressed="true"] { border-color: #0070D7; box-shadow: 0 0 0 2px #0070D7; }
+    button.next {
+      background: #FF7100; color: #FFFFFF; border: 0; text-align: center; font-weight: 600; margin-top: 18px; width: 100%;
+    }
+    button.next:disabled { opacity: .45; cursor: default; }
+    input[type="text"], input[type="tel"] {
+      width: 100%; box-sizing: border-box; border: 1px solid #d0d0d0; border-radius: 8px;
+      padding: 14px 16px; font-size: 16px;
+    }
+    label.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.4; margin-top: 16px; }
+    .err { color: #c00; font-size: 14px; margin-top: 8px; }
+    .page { font-size: 13px; color: #666; margin-bottom: 12px; }
+    .back { background: none; border: 0; color: #0070D7; padding: 0 0 12px; cursor: pointer; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+    <div class="page" id="pg"></div>
+    <button type="button" class="back" id="back" hidden>Back</button>
+    <h1>Your New Health Plan Is Just a Click Away</h1>
+    <p class="sub">Get Your FREE, No-Obligation Quote</p>
+    <div id="step"></div>
+  </div>
+  <script>
+    const STEPS = [
+      { title: "Are you looking for individual or family coverage?", type: "choice", key: "coverage", options: ["Individual", "Family"] },
+      { title: "How old are you?", type: "choice", key: "age", options: ["18-25", "26-35", "36-45", "46-59", "60 and over"] },
+      { title: "What is your household total income?", type: "choice", key: "income", options: ["0-20k/year", "20k-60k/year", "60k-100k/year", "100k-200k/year", "0ver 200k/year"] },
+      { title: "How often do you see the doctor?", type: "choice", key: "doctor", options: ["Many times a year", "A few times a year", "Very rarely"] },
+      { title: "Which state do you live in?", type: "text", key: "state", required: true },
+      { title: "What Is your Full name?", type: "text", key: "name", required: true },
+      { title: "What is your phone number?", type: "phone", key: "phone", required: true, consent: "I agree to the Terms and Conditions of this website and consent to be contacted by licensed insurance agents or their affiliates by telephone or SMS message regarding insurance coverage options." },
+    ]
+    const answers = {}
+    let i = 0
+    const stepEl = document.getElementById("step")
+    const bar = document.getElementById("bar")
+    const pg = document.getElementById("pg")
+    const back = document.getElementById("back")
+
+    function render() {
+      const s = STEPS[i]
+      pg.textContent = "Page " + (i + 1) + " of " + STEPS.length
+      bar.style.width = ((i) / STEPS.length * 100) + "%"
+      back.hidden = i === 0
+      let html = '<div class="q">' + s.title + "</div>"
+      if (s.type === "choice") {
+        html += '<div class="opts">'
+        for (const o of s.options) {
+          const on = answers[s.key] === o
+          html += '<button type="button" class="opt" aria-pressed="' + on + '" data-v="' + o.replace(/"/g, "&quot;") + '">' + o + "</button>"
+        }
+        html += "</div>"
+      } else if (s.type === "text" || s.type === "phone") {
+        html += '<input id="field" type="' + (s.type === "phone" ? "tel" : "text") + '" value="' + (answers[s.key] || "").replace(/"/g, "&quot;") + '" />'
+        if (s.consent) {
+          html += '<label class="check"><input id="consent" type="checkbox" ' + (answers.consent ? "checked" : "") + " /> <span>" + s.consent + "</span></label>"
+        }
+        html += '<div class="err" id="err"></div>'
+        html += '<button type="button" class="next" id="next">Next</button>'
+      }
+      stepEl.innerHTML = html
+      stepEl.querySelectorAll("button.opt").forEach((b) => {
+        b.addEventListener("click", () => {
+          answers[s.key] = b.getAttribute("data-v")
+          i += 1
+          if (i >= STEPS.length) submit()
+          else render()
+        })
+      })
+      const next = document.getElementById("next")
+      if (next) next.addEventListener("click", () => {
+        const field = document.getElementById("field")
+        const err = document.getElementById("err")
+        if (!field.value.trim()) { err.textContent = "This field is required"; return }
+        if (s.consent && !document.getElementById("consent").checked) { err.textContent = "This field is required"; return }
+        answers[s.key] = field.value.trim()
+        if (s.consent) answers.consent = true
+        if (i === STEPS.length - 1) submit()
+        else { i += 1; render() }
+      })
+    }
+    back.addEventListener("click", () => { if (i > 0) { i -= 1; render() } })
+    function submit() {
+      bar.style.width = "100%"
+      try { sessionStorage.setItem("oeh-quote", JSON.stringify(answers)) } catch (err) {}
+      window.top.location.href = "/results"
+    }
+    render()
+  </script>
+</body>
+</html>
