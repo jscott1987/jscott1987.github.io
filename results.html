@@ -757,6 +757,17 @@
 <html>
     <head>
         <style>
+  .oeh-result{padding:8px 4px 4px;color:#1a1a1a;font-family:Georgia,"Times New Roman",serif}
+  .oeh-kicker{margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5c5c5c}
+  .oeh-result h2{margin:0;font-size:28px;font-weight:600;letter-spacing:0;line-height:1.25}
+  .oeh-lead{margin:12px 0 0;max-width:42rem;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#1a1a1a}
+  .oeh-facts{margin:22px 0 0;border-top:1px solid #d9d9d6}
+  .oeh-facts div{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #d9d9d6}
+  .oeh-facts dt{font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#5c5c5c}
+  .oeh-facts dd{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px}
+  .oeh-facts a{color:#1a1a1a;font-weight:700;text-decoration:underline}
+  .oeh-note{margin:16px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.45;color:#5c5c5c}
+
             html, body {
                 margin: 0;
                 padding: 0;
@@ -924,63 +935,16 @@
 
     <!-- RESULTS VIEW (ONLY this remains after 8s) -->
     <section id=&quot;oel-results&quot; class=&quot;oel-results&quot; aria-live=&quot;polite&quot;>
-      <header class=&quot;oel-resultsHeader&quot;>
-        <div class=&quot;oel-resultsBadge&quot;>
-          <span class=&quot;oel-checkDot&quot; aria-hidden=&quot;true&quot;></span>
-          Match complete
-        </div>
-
-        <h2 class=&quot;oel-resultsTitle&quot;>We found your best match.</h2>
-        <p class=&quot;oel-resultsSub&quot;>
-          Call to confirm your options, pricing, and enrollment details with a licensed agent.
-        </p>
-      </header>
-
-      <div class=&quot;oel-resultCard&quot;>
-        <div class=&quot;oel-resultLeft&quot;>
-          <div class=&quot;oel-resultName&quot;>OpenEnrollmentHealth</div>
-
-          <div class=&quot;oel-resultMeta&quot;>
-            <span class=&quot;oel-metaPill&quot;>Licensed agent</span>
-            <span class=&quot;oel-metaPill&quot;>No obligation</span>
-            <span class=&quot;oel-metaPill&quot;>Fast enrollment</span>
-          </div>
-
-          <a class=&quot;oel-phone&quot; href=&quot;tel:+12394232552&quot; aria-label=&quot;Call OpenEnrollmentHealth at 239 423 2552&quot;>
-            (239) 423-2552
-          </a>
-          <div class=&quot;oel-small&quot;>Tap to call now</div>
-
-          <div class=&quot;oel-trustRow&quot;>
-            <div class=&quot;oel-trustItem&quot;>
-              <span class=&quot;oel-trustIcon&quot; aria-hidden=&quot;true&quot;></span>
-              <div>
-                <div class=&quot;oel-trustTitle&quot;>Licensed</div>
-                <div class=&quot;oel-trustSub&quot;>Verified agent support</div>
-              </div>
-            </div>
-
-            <div class=&quot;oel-trustItem&quot;>
-              <span class=&quot;oel-trustIcon oel-trustIcon--green oel-blink&quot; aria-hidden=&quot;true&quot;></span>
-              <div>
-                <div class=&quot;oel-trustTitle&quot;>Available agents</div>
-                <div class=&quot;oel-trustSub&quot;><span class=&quot;oel-agentCount&quot;>18 available agents</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <aside class=&quot;oel-resultRight&quot; aria-label=&quot;Match confidence&quot;>
-          <div class=&quot;oel-confidenceLabel&quot;>Match score</div>
-          <div class=&quot;oel-score&quot;>100%</div>
-          <div class=&quot;oel-confidenceBar&quot; aria-hidden=&quot;true&quot;><div class=&quot;oel-confidenceFill&quot;></div></div>
-          <div class=&quot;oel-confidenceHint&quot;>Based on your answers &amp; availability</div>
-        </aside>
+      <div class=&quot;oeh-result&quot;>
+        <p class=&quot;oeh-kicker&quot;>Quote request</p>
+        <h2>Your information was received.</h2>
+        <p class=&quot;oeh-lead&quot;>A licensed agent can review plan options, price, and enrollment for your area.</p>
+        <dl class=&quot;oeh-facts&quot;>
+          <div><dt>Next step</dt><dd>Call to review plans available where you live.</dd></div>
+          <div><dt>Phone</dt><dd><a href=&quot;tel:+12394232552&quot;>239-423-2552</a></dd></div>
+        </dl>
+        <p class=&quot;oeh-note&quot;>Plan availability and price vary by location and eligibility. Calling does not enroll you in a plan.</p>
       </div>
-
-      <p class=&quot;oel-disclosure&quot;>
-        By calling, you may be connected with a licensed insurance agent. Plan availability and pricing vary by location and eligibility.
-      </p>
     </section>
   </div>
 </div>
@@ -1676,70 +1640,15 @@
     </section>
 
     <section id=&quot;oel_view_results&quot; class=&quot;oel_view oel_results&quot; aria-live=&quot;polite&quot;>
-      <header class=&quot;oel_results_header&quot;>
-        <div class=&quot;oel_results_badge&quot;>
-          <span class=&quot;oel_results_badge_dot&quot; aria-hidden=&quot;true&quot;></span>
-          Match complete
-        </div>
-
-        <div class=&quot;oel_results_title&quot;>We found your best match</div>
-        <div class=&quot;oel_results_sub&quot;>Call to confirm options, pricing, and enrollment details with a licensed agent</div>
-      </header>
-
-      <div class=&quot;oel_results_card&quot;>
-        <div class=&quot;oel_results_left&quot;>
-          <div class=&quot;oel_company&quot;>OpenEnrollmentHealth</div>
-
-          <div class=&quot;oel_pills&quot;>
-            <span class=&quot;oel_pill&quot;>Licensed agent</span>
-            <span class=&quot;oel_pill&quot;>No obligation</span>
-            <span class=&quot;oel_pill&quot;>Fast enrollment</span>
-          </div>
-
-          <a class=&quot;oel_phone&quot; href=&quot;tel:+12392519491&quot; aria-label=&quot;Call OpenEnrollmentHealth&quot;>
-            (239) 251 9491
-          </a>
-
-          <div class=&quot;oel_tap&quot;>Tap to call now</div>
-
-          <div class=&quot;oel_trust_grid&quot; id=&quot;oel_trust_grid&quot;>
-            <div class=&quot;oel_trust_tile&quot;>
-              <span class=&quot;oel_trust_dot&quot; aria-hidden=&quot;true&quot;></span>
-              <div>
-                <div class=&quot;oel_trust_title&quot;>Licensed</div>
-                <div class=&quot;oel_trust_sub&quot;>Verified agent support</div>
-              </div>
-            </div>
-
-            <div class=&quot;oel_trust_tile&quot;>
-              <span class=&quot;oel_trust_dot oel_trust_dot_green oel_blink&quot; aria-hidden=&quot;true&quot;></span>
-              <div>
-                <div class=&quot;oel_trust_title&quot;>Available agents</div>
-                <div class=&quot;oel_trust_sub&quot;><span class=&quot;oel_agents&quot;>18 available agents</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <aside class=&quot;oel_results_right&quot; aria-label=&quot;Match confidence&quot;>
-          <div class=&quot;oel_score_label&quot;>Match score</div>
-          <div class=&quot;oel_score_value&quot;>100%</div>
-          <div class=&quot;oel_score_bar&quot; aria-hidden=&quot;true&quot;>
-            <div class=&quot;oel_score_fill&quot;></div>
-          </div>
-          <div class=&quot;oel_score_hint&quot;>Based on your answers and availability</div>
-        </aside>
-      </div>
-
-      <a class=&quot;oel_cta&quot; id=&quot;oel_cta&quot; href=&quot;tel:+12392519491&quot; aria-label=&quot;Call now&quot;>
-        <svg class=&quot;oel_cta_icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;>
-          <path d=&quot;M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.86.32 1.7.59 2.5a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.58-1.11a2 2 0 0 1 2.11-.45c.8.27 1.64.47 2.5.59A2 2 0 0 1 22 16.92z&quot;></path>
-        </svg>
-        Call now
-      </a>
-
-      <div class=&quot;oel_disclosure&quot; id=&quot;oel_disclosure&quot;>
-        By calling, you may be connected with a licensed insurance agent. Plan availability and pricing vary by location and eligibility.
+      <div class=&quot;oeh-result&quot;>
+        <p class=&quot;oeh-kicker&quot;>Quote request</p>
+        <h2>Your information was received.</h2>
+        <p class=&quot;oeh-lead&quot;>A licensed agent can review plan options, price, and enrollment for your area.</p>
+        <dl class=&quot;oeh-facts&quot;>
+          <div><dt>Next step</dt><dd>Call to review plans available where you live.</dd></div>
+          <div><dt>Phone</dt><dd><a href=&quot;tel:+12394232552&quot;>239-423-2552</a></dd></div>
+        </dl>
+        <p class=&quot;oeh-note&quot;>Plan availability and price vary by location and eligibility. Calling does not enroll you in a plan.</p>
       </div>
     </section>
   </div>
