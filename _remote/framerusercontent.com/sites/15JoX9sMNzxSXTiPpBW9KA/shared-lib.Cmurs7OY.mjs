@@ -1,0 +1,2 @@
+import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";function t(e,t){return{description:`Compare health insurance options and speak with licensed agents who make enrollment simple and clear.`,favicon:`/_remote/framerusercontent.com/assets/GUXpZGOsNbm7FjjlXwnEj38pD44.png`,robots:`max-image-preview:large`,socialImage:`/_remote/framerusercontent.com/assets/oVeCP2gYFSHSt4Clw5rH0diYIY.png`,title:`Open Enrollment Health`}}var n=e((()=>{}));export{t as n,n as t};
+//# sourceMappingURL=shared-lib.Cmurs7OY.mjs.map

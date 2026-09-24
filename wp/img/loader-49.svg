@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <style>
+      @keyframes eds-rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes eds-stroke-1 {
+        0% { stroke-dashoffset: 99%; }
+        18.5% { stroke-dashoffset: 0; }
+        83.6% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 0; }
+      }
+      @keyframes eds-stroke-2 {
+        0% { stroke-dashoffset: 100%; }
+        4.6% { stroke-dashoffset: 100%; }
+        10.1% { stroke-dashoffset: 80%; }
+        18.2% { stroke-dashoffset: 80%; }
+        34.6% { stroke-dashoffset: 0; }
+        67.3% { stroke-dashoffset: 0; }
+        83.6% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 0; }
+      }
+      @keyframes eds-stroke-3 {
+        0% { stroke-dashoffset: 100%; }
+        5.1% { stroke-dashoffset: 90%; }
+        15.5% { stroke-dashoffset: 90%; }
+        50.9% { stroke-dashoffset: 10%; }
+        67.3% { stroke-dashoffset: 10%; }
+        83.6% { stroke-dashoffset: 1%; }
+        100% { stroke-dashoffset: 1%; }
+      }
+      .eds-spinner-group {
+        transform-origin: 60px 60px;
+        animation: eds-rotate 9s linear infinite;
+      }
+      .eds-spinner-stroke {
+        stroke-linecap: round;
+        fill: none;
+      }
+      .eds-stroke-1 {
+        stroke: rgb(68, 184, 243);
+        animation: eds-stroke-1 9s ease-in-out infinite;
+      }
+      .eds-stroke-2 {
+        stroke: rgb(40, 108, 226);
+        animation: eds-stroke-2 9s ease-in-out infinite;
+      }
+      .eds-stroke-3 {
+        stroke: rgb(0, 51, 89);
+        animation: eds-stroke-3 9s ease-in-out infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .eds-spinner-group {
+          animation: none;
+        }
+        .eds-spinner-stroke {
+          animation: none !important;
+          stroke-dashoffset: 0 !important;
+        }
+      }
+    </style>
+  </defs>
+  <g class="eds-spinner-group">
+    <circle class="eds-spinner-stroke eds-stroke-1" cx="60" cy="60" r="52" stroke-width="8" pathLength="100" stroke-dasharray="100" stroke-dashoffset="99"/>
+    <circle class="eds-spinner-stroke eds-stroke-2" cx="60" cy="60" r="52" stroke-width="8" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+    <circle class="eds-spinner-stroke eds-stroke-3" cx="60" cy="60" r="52" stroke-width="8" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+  </g>
+</svg>
