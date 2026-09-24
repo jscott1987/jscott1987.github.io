@@ -127,40 +127,17 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
       </div>
     </section>
 
-    <section id="oel_view_results" class="oel_view oel_results" aria-live="polite" style="display:none">
-      <header class="oel_header">
-        <div class="oel_brand">
-          <div class="oel_brand_name">Open Enrollment Health</div>
-          <div class="oel_brand_sub">Licensed agent support</div>
-        </div>
-        <div class="oel_headline">
-          <div class="oel_title">Plan review</div>
-          <div class="oel_subtitle">Your answers were checked. A licensed agent can review the plans available for this information.</div>
-        </div>
-      </header>
-      <div class="oel_stage">
-        <div class="oel_left">
-          <div class="oel_section_label">Eligibility checklist</div>
-          <div class="oel_list">
-            <div class="oel_item oel_done"><div class="oel_item_text"><div class="oel_item_label">Coverage type</div><div class="oel_item_value" id="oeh-r-type">Individual or Family</div></div><div class="oel_status">Reviewed</div></div>
-            <div class="oel_item oel_done"><div class="oel_item_text"><div class="oel_item_label">Age</div><div class="oel_item_value" id="oeh-r-age">—</div></div><div class="oel_status">Reviewed</div></div>
-            <div class="oel_item oel_done"><div class="oel_item_text"><div class="oel_item_label">Household income</div><div class="oel_item_value" id="oeh-r-income">—</div></div><div class="oel_status">Reviewed</div></div>
-            <div class="oel_item oel_done" id="oeh-row-state" style="display:none"><div class="oel_item_text"><div class="oel_item_label">State</div><div class="oel_item_value" id="oeh-r-state">—</div></div><div class="oel_status">Reviewed</div></div>
-            <div class="oel_item oel_done" id="oeh-row-doctor" style="display:none"><div class="oel_item_text"><div class="oel_item_label">Doctor visits</div><div class="oel_item_value" id="oeh-r-doctor">—</div></div><div class="oel_status">Reviewed</div></div>
-          </div>
-        </div>
-        <div class="oel_right">
-          <div class="oel_section_label">Provider scan</div>
-          <div class="oel_list">
-            <div class="oel_item oel_done"><div class="oel_item_text"><div class="oel_item_label">UnitedHealthcare</div><div class="oel_item_value">Pricing and availability</div></div><div class="oel_status">Reviewed</div></div>
-            <div class="oel_item oel_done"><div class="oel_item_text"><div class="oel_item_label">Ambetter</div><div class="oel_item_value">Benefits and eligibility</div></div><div class="oel_status">Reviewed</div></div>
-            <div class="oel_item oel_done"><div class="oel_item_text"><div class="oel_item_label">Blue Cross Blue Shield</div><div class="oel_item_value">Network and plan options</div></div><div class="oel_status">Reviewed</div></div>
-            <div class="oel_item oel_done"><div class="oel_item_text"><div class="oel_item_label">Aetna</div><div class="oel_item_value">Plan fit</div></div><div class="oel_status">Reviewed</div></div>
-            <div class="oel_item oel_done"><div class="oel_item_text"><div class="oel_item_label">Cigna</div><div class="oel_item_value">Regional availability</div></div><div class="oel_status">Reviewed</div></div>
-          </div>
-        </div>
+        <section id="oel_view_results" class="oel_view oel_results" aria-live="polite" style="display:none">
+      <div class="oeh-result">
+        <p class="oeh-kicker">Quote request</p>
+        <h2>Your information was received.</h2>
+        <p class="oeh-lead">A licensed agent can review plan options, price, and enrollment for your area.</p>
+        <dl class="oeh-facts">
+          <div><dt>Next step</dt><dd>Call to review plans available where you live.</dd></div>
+          <div><dt>Phone</dt><dd><a href="tel:+12394232552">239-423-2552</a></dd></div>
+        </dl>
+        <p class="oeh-note">Plan availability and price vary by location and eligibility. Calling does not enroll you in a plan.</p>
       </div>
-      <div class="oeh-foot">Call <a href="tel:+12394232552">239-423-2552</a> to review plans. Calling does not enroll you.</div>
     </section>
   </div>
 </div>
@@ -905,23 +882,6 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
   function setText(id,val){ var el = byId(id); if(el) el.textContent = String(val); }
 
   var data = window.__QUOTE_FORM__ || {};
-  var quote = {};
-  try { quote = JSON.parse(sessionStorage.getItem("oeh-quote") || "{}"); } catch (err) {}
-  function oehPut(id, value) {
-    var nodes = document.querySelectorAll("#" + id);
-    for (var i = 0; i < nodes.length; i++) if (value) nodes[i].textContent = value;
-  }
-  function oehShow(id, value) {
-    if (!value) return;
-    oehPut(id.replace("row", "r").replace("oeh-row-", "oeh-r-"), value);
-    var rows = document.querySelectorAll("#" + id);
-    for (var i = 0; i < rows.length; i++) rows[i].style.display = "";
-  }
-  oehPut("oeh-r-type", quote.coverage || (typeof data !== "undefined" && data.type));
-  oehPut("oeh-r-age", quote.age || (typeof data !== "undefined" && data.age));
-  oehPut("oeh-r-income", quote.income || (typeof data !== "undefined" && data.income));
-  oehShow("oeh-row-state", quote.state);
-  oehShow("oeh-row-doctor", quote.doctor);
 
   setText("oel_val_type", data.type || "Individual or Family");
   setText("oel_val_zip", data.zip || data.zipcode || data.postal || "—");
@@ -1168,40 +1128,17 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
     </section>
 
     <!-- RESULTS VIEW (ONLY this remains after 8s) -->
-    <section id="oel-results" class="oel-results" aria-live="polite" style="display:none">
-      <header class="oel-header">
-        <div class="oel-topRow">
-          <div class="oel-brand">
-            <div class="oel-brandName">Open Enrollment Health</div>
-            <div class="oel-brandSub">Licensed agent support</div>
-          </div>
-        </div>
-        <h1 class="oel-title">Plan review</h1>
-        <p class="oel-sub">Your answers were checked. A licensed agent can review the plans available for this information.</p>
-      </header>
-      <div class="oel-body">
-        <div class="oel-panel">
-          <div class="oel-sectionTitle">Eligibility checklist</div>
-          <div class="oel-list">
-            <div class="oel-item done"><div class="oel-text"><div class="oel-label">Coverage type</div><div class="oel-value" id="oeh-r-type">Individual or Family</div></div><div class="oel-pill">Reviewed</div></div>
-            <div class="oel-item done"><div class="oel-text"><div class="oel-label">Age</div><div class="oel-value" id="oeh-r-age">—</div></div><div class="oel-pill">Reviewed</div></div>
-            <div class="oel-item done"><div class="oel-text"><div class="oel-label">Household income</div><div class="oel-value" id="oeh-r-income">—</div></div><div class="oel-pill">Reviewed</div></div>
-            <div class="oel-item done" id="oeh-row-state" style="display:none"><div class="oel-text"><div class="oel-label">State</div><div class="oel-value" id="oeh-r-state">—</div></div><div class="oel-pill">Reviewed</div></div>
-            <div class="oel-item done" id="oeh-row-doctor" style="display:none"><div class="oel-text"><div class="oel-label">Doctor visits</div><div class="oel-value" id="oeh-r-doctor">—</div></div><div class="oel-pill">Reviewed</div></div>
-          </div>
-        </div>
-        <div class="oel-panel">
-          <div class="oel-sectionTitle">Provider scan</div>
-          <div class="oel-list">
-            <div class="oel-item done"><div class="oel-text"><div class="oel-label">UnitedHealthcare</div><div class="oel-value">Pricing and availability</div></div><div class="oel-pill">Reviewed</div></div>
-            <div class="oel-item done"><div class="oel-text"><div class="oel-label">Ambetter</div><div class="oel-value">Benefits and eligibility</div></div><div class="oel-pill">Reviewed</div></div>
-            <div class="oel-item done"><div class="oel-text"><div class="oel-label">Blue Cross Blue Shield</div><div class="oel-value">Network and plan options</div></div><div class="oel-pill">Reviewed</div></div>
-            <div class="oel-item done"><div class="oel-text"><div class="oel-label">Aetna</div><div class="oel-value">Plan fit</div></div><div class="oel-pill">Reviewed</div></div>
-            <div class="oel-item done"><div class="oel-text"><div class="oel-label">Cigna</div><div class="oel-value">Regional availability</div></div><div class="oel-pill">Reviewed</div></div>
-          </div>
-        </div>
+        <section id="oel-results" class="oel-results" aria-live="polite" style="display:none">
+      <div class="oeh-result">
+        <p class="oeh-kicker">Quote request</p>
+        <h2>Your information was received.</h2>
+        <p class="oeh-lead">A licensed agent can review plan options, price, and enrollment for your area.</p>
+        <dl class="oeh-facts">
+          <div><dt>Next step</dt><dd>Call to review plans available where you live.</dd></div>
+          <div><dt>Phone</dt><dd><a href="tel:+12394232552">239-423-2552</a></dd></div>
+        </dl>
+        <p class="oeh-note">Plan availability and price vary by location and eligibility. Calling does not enroll you in a plan.</p>
       </div>
-      <div class="oeh-foot">Call <a href="tel:+12394232552">239-423-2552</a> to review plans. Calling does not enroll you.</div>
     </section>
   </div>
 </div>
@@ -1620,23 +1557,6 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
 <script>
 (function(){
   const data = window.__QUOTE_FORM__ || {};
-  var quote = {};
-  try { quote = JSON.parse(sessionStorage.getItem("oeh-quote") || "{}"); } catch (err) {}
-  function oehPut(id, value) {
-    var nodes = document.querySelectorAll("#" + id);
-    for (var i = 0; i < nodes.length; i++) if (value) nodes[i].textContent = value;
-  }
-  function oehShow(id, value) {
-    if (!value) return;
-    oehPut(id.replace("row", "r").replace("oeh-row-", "oeh-r-"), value);
-    var rows = document.querySelectorAll("#" + id);
-    for (var i = 0; i < rows.length; i++) rows[i].style.display = "";
-  }
-  oehPut("oeh-r-type", quote.coverage || (typeof data !== "undefined" && data.type));
-  oehPut("oeh-r-age", quote.age || (typeof data !== "undefined" && data.age));
-  oehPut("oeh-r-income", quote.income || (typeof data !== "undefined" && data.income));
-  oehShow("oeh-row-state", quote.state);
-  oehShow("oeh-row-doctor", quote.doctor);
 
 
   document.getElementById("oel-val-type").textContent = String(data.type || "Individual / Family");
