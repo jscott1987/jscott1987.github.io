@@ -1222,13 +1222,6 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
         </aside>
       </div>
 
-      <a class="oel-cta" id="oel-cta" href="tel:+12392519491" aria-label="Call now">
-        <svg class="oel-phoneIcon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.86.32 1.7.59 2.5a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.58-1.11a2 2 0 0 1 2.11-.45c.8.27 1.64.47 2.5.59A2 2 0 0 1 22 16.92z"></path>
-        </svg>
-        Call Now
-      </a>
-
       <p class="oel-disclosure">
         By calling, you may be connected with a licensed insurance agent. Plan availability and pricing vary by location and eligibility.
       </p>
