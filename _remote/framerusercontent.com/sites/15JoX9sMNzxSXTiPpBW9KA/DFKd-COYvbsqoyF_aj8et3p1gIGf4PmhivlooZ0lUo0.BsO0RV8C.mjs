@@ -128,32 +128,39 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
     </section>
 
         <section id="oel_view_results" class="oel_view oel_results" aria-live="polite" style="display:none">
-      <div class="oeh-out">
-        <p class="oeh-out-k">Open Enrollment Health</p>
-        <h2>Plans reviewed for your area</h2>
-        <p class="oeh-out-lead">A licensed agent can walk through price, coverage, and enrollment for the answers you gave. This review does not enroll you.</p>
-        <div class="oeh-out-grid">
-          <div>
-            <h3>From your quote</h3>
-            <ul>
-              <li><span>Coverage</span><b id="oeh-a-type">Individual or Family</b></li>
-              <li><span>Age</span><b id="oeh-a-age">—</b></li>
-              <li><span>Household income</span><b id="oeh-a-income">—</b></li>
-              <li id="oeh-a-state-row" style="display:none"><span>State</span><b id="oeh-a-state"></b></li>
-            </ul>
+      <div class="oeh-match">
+        <p class="oeh-done"><span class="oeh-tick" aria-hidden="true"></span> Match complete</p>
+        <h2>We found your best match.</h2>
+        <p class="oeh-sub">Your match is ready. A licensed agent can help confirm the details before you decide.</p>
+        <div class="oeh-card">
+          <div class="oeh-card-top">
+            <div>
+              <p class="oeh-label">Your match</p>
+              <p class="oeh-word"><span>Open</span><span class="oeh-en">Enrollment</span><span class="oeh-he">Health</span></p>
+            </div>
+            <p class="oeh-support">Licensed agent support</p>
           </div>
-          <div>
-            <h3>Carriers checked</h3>
-            <ul>
-              <li><span>UnitedHealthcare</span><b>Reviewed</b></li>
-              <li><span>Ambetter</span><b>Reviewed</b></li>
-              <li><span>Blue Cross Blue Shield</span><b>Reviewed</b></li>
-              <li><span>Aetna</span><b>Reviewed</b></li>
-              <li><span>Cigna</span><b>Reviewed</b></li>
-            </ul>
+          <div class="oeh-split">
+            <div>
+              <p class="oeh-label">Match score</p>
+              <p class="oeh-score">100%</p>
+              <p class="oeh-hint">Based on your answers &amp; availability</p>
+            </div>
+            <div>
+              <p class="oeh-label">Agent availability</p>
+              <p class="oeh-agents"><i></i>18 agents available</p>
+              <p class="oeh-hint">Available to talk by phone</p>
+            </div>
           </div>
         </div>
-        <p class="oeh-out-call">Call <a href="tel:+12394232552">239-423-2552</a></p>
+        <div class="oeh-next">
+          <div>
+            <p class="oeh-next-t">What happens next?</p>
+            <p class="oeh-hint">Call to review available plans, pricing, and enrollment details with a licensed agent. There is no obligation to enroll.</p>
+          </div>
+          <a class="oeh-call" href="tel:+12394232552">Call (239) 423-2552</a>
+        </div>
+        <p class="oeh-fine">By calling, you may be connected with a licensed insurance agent. Plan availability and pricing vary by location and eligibility.</p>
       </div>
     </section>
   </div>
@@ -183,6 +190,36 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
   .oeh-out-call{margin:18px 0 0;padding-top:16px;border-top:1px solid #e4e4e1;font-size:15px}
   .oeh-out-call a{color:#1a1a1a;font-weight:700;font-size:20px;text-decoration:underline}
   @media(max-width:700px){.oeh-out{padding:20px 16px}.oeh-out-grid{grid-template-columns:1fr}}
+  .oeh-match{box-sizing:border-box;color:#1c2430;font-family:Arial,Helvetica,sans-serif;text-align:left}
+  .oeh-done{display:flex;align-items:center;gap:8px;margin:0 0 14px;color:#1f8a4c;font-size:14px;font-weight:600}
+  .oeh-tick{width:18px;height:18px;border-radius:99px;background:#1f8a4c;position:relative;flex:0 0 auto}
+  .oeh-tick:after{content:"";position:absolute;left:5px;top:3px;width:5px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  .oeh-match h2{margin:0;font-size:40px;line-height:1.1;font-weight:750;letter-spacing:-0.03em;color:#1a2332}
+  .oeh-sub{margin:10px 0 0;font-size:15px;line-height:1.45;color:#667085}
+  .oeh-card{margin-top:22px;background:#fff;border:1px solid #e6e8ee;border-radius:10px;overflow:hidden}
+  .oeh-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:18px 20px 16px}
+  .oeh-label{margin:0;font-size:13px;color:#8b93a1}
+  .oeh-word{margin:8px 0 0;font-size:28px;font-weight:800;letter-spacing:-0.03em;line-height:1}
+  .oeh-word span{color:#1a1a1a}
+  .oeh-en{color:#ED5D09}
+  .oeh-he{color:#8d8d8d}
+  .oeh-support{margin:0;font-size:13px;color:#667085;white-space:nowrap}
+  .oeh-split{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #e6e8ee}
+  .oeh-split > div{padding:18px 20px 20px}
+  .oeh-split > div + div{border-left:1px solid #e6e8ee}
+  .oeh-score{margin:8px 0 0;font-size:40px;font-weight:750;line-height:1;letter-spacing:-0.03em}
+  .oeh-score:after{content:"";display:block;width:72px;height:3px;margin-top:8px;background:#ED5D09;border-radius:2px}
+  .oeh-agents{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:22px;font-weight:700}
+  .oeh-agents i{width:8px;height:8px;border-radius:99px;background:#1f8a4c;display:inline-block}
+  .oeh-hint{margin:8px 0 0;font-size:13px;line-height:1.4;color:#8b93a1}
+  .oeh-next{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:14px;padding:16px 18px;background:#eef2f5;border-radius:10px}
+  .oeh-next-t{margin:0;font-size:16px;font-weight:700;color:#1a2332}
+  .oeh-call{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 16px;border-radius:8px;background:#ED5D09;color:#fff;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap}
+  .oeh-fine{margin:14px 0 0;font-size:12px;line-height:1.4;color:#98a2b3}
+  #oel-overlay.is-match,#oel_overlay.is-match{background:#f4f6f8;top:104px}
+  #oel-overlay.is-match .oel-wrap,#oel_overlay.is-match .oel_shell{background:transparent;border:0;box-shadow:none;width:min(720px,calc(100vw - 32px));top:24px;transform:translate(-50%,0);overflow:visible}
+  @media(max-width:700px){.oeh-match h2{font-size:30px}.oeh-split,.oeh-next{display:block}.oeh-split > div + div{border-left:0;border-top:1px solid #e6e8ee}.oeh-call{margin-top:12px}}
+
 
   .oeh-foot{padding:14px 22px 18px;border-top:1px solid rgba(18,22,30,.08);font-size:14px;line-height:1.4;color:rgba(18,22,30,.72)}
   .oeh-foot a{color:#1a1a1a;font-weight:700;font-size:18px;text-decoration:underline}
@@ -1028,6 +1065,7 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
         if (quote.state) { put("oeh-a-state", quote.state); var row = document.getElementById("oeh-a-state-row"); if (row) row.style.display = "flex"; }
       } catch (err) {}
 
+      var shell=document.getElementById("oel_overlay"); if(shell) shell.classList.add("is-match");
       results.style.display = "flex";
     }
   }, TOTAL);
@@ -1168,32 +1206,39 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
 
     <!-- RESULTS VIEW (ONLY this remains after 8s) -->
         <section id="oel-results" class="oel-results" aria-live="polite" style="display:none">
-      <div class="oeh-out">
-        <p class="oeh-out-k">Open Enrollment Health</p>
-        <h2>Plans reviewed for your area</h2>
-        <p class="oeh-out-lead">A licensed agent can walk through price, coverage, and enrollment for the answers you gave. This review does not enroll you.</p>
-        <div class="oeh-out-grid">
-          <div>
-            <h3>From your quote</h3>
-            <ul>
-              <li><span>Coverage</span><b id="oeh-a-type">Individual or Family</b></li>
-              <li><span>Age</span><b id="oeh-a-age">—</b></li>
-              <li><span>Household income</span><b id="oeh-a-income">—</b></li>
-              <li id="oeh-a-state-row" style="display:none"><span>State</span><b id="oeh-a-state"></b></li>
-            </ul>
+      <div class="oeh-match">
+        <p class="oeh-done"><span class="oeh-tick" aria-hidden="true"></span> Match complete</p>
+        <h2>We found your best match.</h2>
+        <p class="oeh-sub">Your match is ready. A licensed agent can help confirm the details before you decide.</p>
+        <div class="oeh-card">
+          <div class="oeh-card-top">
+            <div>
+              <p class="oeh-label">Your match</p>
+              <p class="oeh-word"><span>Open</span><span class="oeh-en">Enrollment</span><span class="oeh-he">Health</span></p>
+            </div>
+            <p class="oeh-support">Licensed agent support</p>
           </div>
-          <div>
-            <h3>Carriers checked</h3>
-            <ul>
-              <li><span>UnitedHealthcare</span><b>Reviewed</b></li>
-              <li><span>Ambetter</span><b>Reviewed</b></li>
-              <li><span>Blue Cross Blue Shield</span><b>Reviewed</b></li>
-              <li><span>Aetna</span><b>Reviewed</b></li>
-              <li><span>Cigna</span><b>Reviewed</b></li>
-            </ul>
+          <div class="oeh-split">
+            <div>
+              <p class="oeh-label">Match score</p>
+              <p class="oeh-score">100%</p>
+              <p class="oeh-hint">Based on your answers &amp; availability</p>
+            </div>
+            <div>
+              <p class="oeh-label">Agent availability</p>
+              <p class="oeh-agents"><i></i>18 agents available</p>
+              <p class="oeh-hint">Available to talk by phone</p>
+            </div>
           </div>
         </div>
-        <p class="oeh-out-call">Call <a href="tel:+12394232552">239-423-2552</a></p>
+        <div class="oeh-next">
+          <div>
+            <p class="oeh-next-t">What happens next?</p>
+            <p class="oeh-hint">Call to review available plans, pricing, and enrollment details with a licensed agent. There is no obligation to enroll.</p>
+          </div>
+          <a class="oeh-call" href="tel:+12394232552">Call (239) 423-2552</a>
+        </div>
+        <p class="oeh-fine">By calling, you may be connected with a licensed insurance agent. Plan availability and pricing vary by location and eligibility.</p>
       </div>
     </section>
   </div>
@@ -1436,6 +1481,36 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
   .oeh-out-call{margin:18px 0 0;padding-top:16px;border-top:1px solid #e4e4e1;font-size:15px}
   .oeh-out-call a{color:#1a1a1a;font-weight:700;font-size:20px;text-decoration:underline}
   @media(max-width:700px){.oeh-out{padding:20px 16px}.oeh-out-grid{grid-template-columns:1fr}}
+  .oeh-match{box-sizing:border-box;color:#1c2430;font-family:Arial,Helvetica,sans-serif;text-align:left}
+  .oeh-done{display:flex;align-items:center;gap:8px;margin:0 0 14px;color:#1f8a4c;font-size:14px;font-weight:600}
+  .oeh-tick{width:18px;height:18px;border-radius:99px;background:#1f8a4c;position:relative;flex:0 0 auto}
+  .oeh-tick:after{content:"";position:absolute;left:5px;top:3px;width:5px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  .oeh-match h2{margin:0;font-size:40px;line-height:1.1;font-weight:750;letter-spacing:-0.03em;color:#1a2332}
+  .oeh-sub{margin:10px 0 0;font-size:15px;line-height:1.45;color:#667085}
+  .oeh-card{margin-top:22px;background:#fff;border:1px solid #e6e8ee;border-radius:10px;overflow:hidden}
+  .oeh-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:18px 20px 16px}
+  .oeh-label{margin:0;font-size:13px;color:#8b93a1}
+  .oeh-word{margin:8px 0 0;font-size:28px;font-weight:800;letter-spacing:-0.03em;line-height:1}
+  .oeh-word span{color:#1a1a1a}
+  .oeh-en{color:#ED5D09}
+  .oeh-he{color:#8d8d8d}
+  .oeh-support{margin:0;font-size:13px;color:#667085;white-space:nowrap}
+  .oeh-split{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #e6e8ee}
+  .oeh-split > div{padding:18px 20px 20px}
+  .oeh-split > div + div{border-left:1px solid #e6e8ee}
+  .oeh-score{margin:8px 0 0;font-size:40px;font-weight:750;line-height:1;letter-spacing:-0.03em}
+  .oeh-score:after{content:"";display:block;width:72px;height:3px;margin-top:8px;background:#ED5D09;border-radius:2px}
+  .oeh-agents{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:22px;font-weight:700}
+  .oeh-agents i{width:8px;height:8px;border-radius:99px;background:#1f8a4c;display:inline-block}
+  .oeh-hint{margin:8px 0 0;font-size:13px;line-height:1.4;color:#8b93a1}
+  .oeh-next{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:14px;padding:16px 18px;background:#eef2f5;border-radius:10px}
+  .oeh-next-t{margin:0;font-size:16px;font-weight:700;color:#1a2332}
+  .oeh-call{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 16px;border-radius:8px;background:#ED5D09;color:#fff;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap}
+  .oeh-fine{margin:14px 0 0;font-size:12px;line-height:1.4;color:#98a2b3}
+  #oel-overlay.is-match,#oel_overlay.is-match{background:#f4f6f8;top:104px}
+  #oel-overlay.is-match .oel-wrap,#oel_overlay.is-match .oel_shell{background:transparent;border:0;box-shadow:none;width:min(720px,calc(100vw - 32px));top:24px;transform:translate(-50%,0);overflow:visible}
+  @media(max-width:700px){.oeh-match h2{font-size:30px}.oeh-split,.oeh-next{display:block}.oeh-split > div + div{border-left:0;border-top:1px solid #e6e8ee}.oeh-call{margin-top:12px}}
+
 
   .oeh-foot{padding:14px 22px 18px;border-top:1px solid rgba(18,22,30,.08);font-size:14px;line-height:1.4;color:rgba(18,22,30,.72)}
   .oeh-foot a{color:#1a1a1a;font-weight:700;font-size:18px;text-decoration:underline}
@@ -1719,6 +1794,7 @@ import{t as e}from"./rolldown-runtime.DoLEYLFS.mjs";import{A as t,O as n,c as r,
         if (quote.state) { put("oeh-a-state", quote.state); var row = document.getElementById("oeh-a-state-row"); if (row) row.style.display = "flex"; }
       } catch (err) {}
 
+      var shell=document.getElementById("oel-overlay"); if(shell) shell.classList.add("is-match");
       results.style.display = "block";
     }
   }, TOTAL);
