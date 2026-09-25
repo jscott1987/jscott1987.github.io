@@ -42,6 +42,15 @@ if (location.pathname.replace(/\/$/, "") === "/results") {
       + '<p class="oeh-m-done"><span></span>Match complete</p>'
       + '<h1>We found your best match.</h1>'
       + '<p class="oeh-m-sub">Your match is ready. A licensed agent can help confirm the details before you decide.</p>'
+      + '<section class="oeh-m-criteria" aria-label="Criteria used for this match">'
+      + '<p class="oeh-m-label">Criteria used</p>'
+      + '<ul>'
+      + '<li><span>Coverage</span><b data-oeh="coverage">—</b></li>'
+      + '<li><span>Age</span><b data-oeh="age">—</b></li>'
+      + '<li><span>Household income</span><b data-oeh="income">—</b></li>'
+      + '<li><span>Doctor visits</span><b data-oeh="doctor">—</b></li>'
+      + '<li><span>State</span><b data-oeh="state">—</b></li>'
+      + '</ul></section>'
       + '<section class="oeh-m-card">'
       + '<div class="oeh-m-top"><div><p class="oeh-m-label">Your match</p>'
       + '<p class="oeh-m-word"><b>Open</b><b class="en">Enrollment</b><b class="he">Health</b></p></div>'
@@ -77,7 +86,12 @@ if (location.pathname.replace(/\/$/, "") === "/results") {
       + '.oeh-m-done span:after{content:"";position:absolute;left:6px;top:3px;width:4px;height:8px;border:solid #1b7a45;border-width:0 2px 2px 0;transform:rotate(45deg)}'
       + '.oeh-m h1{margin:0;font-size:40px;line-height:1.15;font-weight:700;letter-spacing:-0.03em;color:#213244}'
       + '.oeh-m-sub{margin:10px 0 0;max-width:40rem;color:#667085;font-size:15px;line-height:1.45}'
-      + '.oeh-m-card{margin-top:26px;background:#fff;border:1px solid #e4e5e7;border-radius:12px;box-shadow:none}'
+      + '.oeh-m-criteria{margin-top:22px;background:#fff;border:1px solid #e4e5e7;border-radius:12px;padding:16px 24px 8px}'
+      + '.oeh-m-criteria ul{list-style:none;margin:8px 0 0;padding:0}'
+      + '.oeh-m-criteria li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-top:1px solid #e4e5e7;font-size:14px}'
+      + '.oeh-m-criteria span{color:#667085}'
+      + '.oeh-m-criteria b{font-weight:600;color:#213244;text-align:right}'
+      + '.oeh-m-card{margin-top:14px;background:#fff;border:1px solid #e4e5e7;border-radius:12px;box-shadow:none}'
       + '.oeh-m-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px 24px 16px}'
       + '.oeh-m-label{margin:0;color:#98a2b3;font-size:13px;font-weight:400}'
       + '.oeh-m-word{margin:8px 0 0;font-size:30px;line-height:1;letter-spacing:-0.03em}'
@@ -104,5 +118,13 @@ if (location.pathname.replace(/\/$/, "") === "/results") {
       + '@media(max-width:640px){.oeh-hd{height:auto;display:block;padding:14px 16px}.oeh-hd-r{margin-top:10px;gap:12px;flex-wrap:wrap}.oeh-m{padding:32px 16px 48px}.oeh-m h1{font-size:32px}.oeh-m-word{font-size:22px}.oeh-m-split{grid-template-columns:1fr}.oeh-m-split>div+div{border-left:0;border-top:1px solid #e4e5e7}.oeh-m-next{display:block}.oeh-m-next a{width:100%;margin-top:14px;justify-content:center;box-sizing:border-box}}'
     document.head.appendChild(css)
     document.body.appendChild(page)
+    var quote = {}
+    try { quote = JSON.parse(sessionStorage.getItem("oeh-quote") || "{}") } catch (err) {}
+    var params = new URLSearchParams(location.search)
+    if (!quote.state && params.get("state")) quote.state = params.get("state")
+    ;["coverage", "age", "income", "doctor", "state"].forEach(function (key) {
+      var el = page.querySelector('[data-oeh="' + key + '"]')
+      if (el && quote[key]) el.textContent = quote[key]
+    })
   }, 8200)
 }
