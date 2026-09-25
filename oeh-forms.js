@@ -27,104 +27,110 @@ document.addEventListener("submit", function (e) {
 if (location.pathname.replace(/\/$/, "") === "/results") {
   setTimeout(function () {
     if (document.getElementById("oeh-match-page")) return
-    var shield = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.8 7-7 9-4.2-2-7-4.8-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>'
-    var phone = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h3.2l1.2 3.2-2 1.4a11 11 0 0 0 5.5 5.5l1.4-2 3.2 1.2V16a1.8 1.8 0 0 1-1.8 1.8A14.2 14.2 0 0 1 4.2 6.3 1.8 1.8 0 0 1 6 4.5z"/></svg>'
-    var page = document.createElement("div")
-    page.id = "oeh-match-page"
-    page.innerHTML = ''
-      + '<div class="oeh-bar">' + shield + 'Licensed assistance available for health plan enrollment</div>'
-      + '<header class="oeh-hd">'
-      + '<a class="oeh-logo" href="/"><b>Open</b><b class="en">Enrollment</b><b class="he">Health</b></a>'
-      + '<div class="oeh-hd-r"><span class="oeh-live"><i></i>Licensed agents available</span>'
-      + '<a class="oeh-hd-tel" href="tel:+12394232552">' + phone + '<b>(239) 423-2552</b></a></div>'
-      + '</header>'
-      + '<main class="oeh-m">'
-      + '<p class="oeh-m-done"><span></span>Match complete</p>'
-      + '<h1>We found your best match.</h1>'
-      + '<p class="oeh-m-sub">Your match is ready. A licensed agent can help confirm the details before you decide.</p>'
-      + '<section class="oeh-m-criteria" aria-label="Criteria used for this match">'
-      + '<p class="oeh-m-label">Criteria used</p>'
-      + '<ul>'
-      + '<li><span>Coverage</span><b data-oeh="coverage">—</b></li>'
-      + '<li><span>Age</span><b data-oeh="age">—</b></li>'
-      + '<li><span>Household income</span><b data-oeh="income">—</b></li>'
-      + '<li><span>Doctor visits</span><b data-oeh="doctor">—</b></li>'
-      + '<li><span>State</span><b data-oeh="state">—</b></li>'
-      + '</ul></section>'
-      + '<section class="oeh-m-card">'
-      + '<div class="oeh-m-top"><div><p class="oeh-m-label">Your match</p>'
-      + '<p class="oeh-m-word"><b>Open</b><b class="en">Enrollment</b><b class="he">Health</b></p></div>'
-      + '<p class="oeh-m-support">' + shield + 'Licensed agent support</p></div>'
-      + '<div class="oeh-m-split"><div><p class="oeh-m-label">Match score</p><p class="oeh-m-score">100%</p>'
-      + '<p class="oeh-m-hint">Based on your answers &amp; availability</p></div>'
-      + '<div><p class="oeh-m-label">Agent availability</p><p class="oeh-m-agents"><i></i><b>18</b><span>agents available</span></p>'
-      + '<p class="oeh-m-hint">Available to talk by phone</p></div></div>'
-      + '</section>'
-      + '<section class="oeh-m-next"><div><h2>What happens next?</h2>'
-      + '<p>Call to review available plans, pricing, and enrollment details with a licensed agent. There is no obligation to enroll.</p></div>'
-      + '<a href="tel:+12394232552">' + phone + 'Call (239) 423-2552</a></section>'
-      + '<p class="oeh-m-fine">By calling, you may be connected with a licensed insurance agent. Plan availability and pricing vary by location and eligibility.</p>'
-      + '</main>'
-    var css = document.createElement("style")
-    css.textContent = ''
-      + '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");'
-      + '#oeh-match-page{position:fixed;inset:0;z-index:2147483646;background:#f7f8fa;overflow:auto;font-family:Inter,Arial,Helvetica,sans-serif;color:#213244}'
-      + '.oeh-bar{height:32px;display:flex;align-items:center;justify-content:center;gap:8px;background:#1e3447;color:#e7eef3;font-size:12px}'
-      + '.oeh-bar svg{width:14px;height:14px;fill:none;stroke:#e7eef3;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}'
-      + '.oeh-hd{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:#fff}'
-      + '.oeh-logo{font-size:22px;font-weight:800;letter-spacing:-0.03em;text-decoration:none;line-height:1}'
-      + '.oeh-logo b,.oeh-m-word b{font-weight:800}'
-      + '.oeh-logo b{color:#1a1a1a}.oeh-logo .en,.oeh-m-word .en{color:#E05E2F}.oeh-logo .he,.oeh-m-word .he{color:#8d8d8d}'
-      + '.oeh-hd-r{display:flex;align-items:center;gap:28px}'
-      + '.oeh-live{display:flex;align-items:center;gap:8px;font-size:14px;color:#3d4a57}'
-      + '.oeh-live i{width:8px;height:8px;border-radius:99px;background:#1f9d55;display:inline-block}'
-      + '.oeh-hd-tel{display:inline-flex;align-items:center;gap:8px;color:#213244;font-size:15px;font-weight:700;text-decoration:none}'
-      + '.oeh-hd-tel svg{width:16px;height:16px;fill:none;stroke:#E05E2F;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}'
-      + '.oeh-m{max-width:720px;margin:0 auto;padding:52px 24px 64px}'
-      + '.oeh-m-done{display:flex;align-items:center;gap:8px;margin:0 0 14px;color:#1b7a45;font-size:14px;font-weight:600}'
-      + '.oeh-m-done span{width:18px;height:18px;border-radius:99px;background:#e7f6ee;position:relative;display:inline-block;flex:0 0 auto}'
-      + '.oeh-m-done span:after{content:"";position:absolute;left:6px;top:3px;width:4px;height:8px;border:solid #1b7a45;border-width:0 2px 2px 0;transform:rotate(45deg)}'
-      + '.oeh-m h1{margin:0;font-size:40px;line-height:1.15;font-weight:700;letter-spacing:-0.03em;color:#213244}'
-      + '.oeh-m-sub{margin:10px 0 0;max-width:40rem;color:#667085;font-size:15px;line-height:1.45}'
-      + '.oeh-m-criteria{margin-top:22px;background:#fff;border:1px solid #e4e5e7;border-radius:12px;padding:16px 24px 8px}'
-      + '.oeh-m-criteria ul{list-style:none;margin:8px 0 0;padding:0}'
-      + '.oeh-m-criteria li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-top:1px solid #e4e5e7;font-size:14px}'
-      + '.oeh-m-criteria span{color:#667085}'
-      + '.oeh-m-criteria b{font-weight:600;color:#213244;text-align:right}'
-      + '.oeh-m-card{margin-top:14px;background:#fff;border:1px solid #e4e5e7;border-radius:12px;box-shadow:none}'
-      + '.oeh-m-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px 24px 16px}'
-      + '.oeh-m-label{margin:0;color:#98a2b3;font-size:13px;font-weight:400}'
-      + '.oeh-m-word{margin:8px 0 0;font-size:30px;line-height:1;letter-spacing:-0.03em}'
-      + '.oeh-m-word b{color:#1a1a1a}'
-      + '.oeh-m-support{display:flex;align-items:center;gap:6px;margin:4px 0 0;color:#667085;font-size:13px;white-space:nowrap}'
-      + '.oeh-m-support svg{width:16px;height:16px;fill:none;stroke:#1f9d55;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}'
-      + '.oeh-m-split{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #e4e5e7}'
-      + '.oeh-m-split>div{padding:18px 24px 20px}'
-      + '.oeh-m-split>div+div{border-left:1px solid #e4e5e7}'
-      + '.oeh-m-score{margin:6px 0 0;font-size:40px;font-weight:700;line-height:1;letter-spacing:-0.03em;color:#213244}'
-      + '.oeh-m-score:after{content:"";display:block;width:88px;height:3px;margin-top:8px;background:#E05E2F;border-radius:2px}'
-      + '.oeh-m-agents{display:flex;align-items:baseline;gap:8px;margin:10px 0 0;color:#213244}'
-      + '.oeh-m-agents i{width:8px;height:8px;border-radius:99px;background:#1f9d55;display:inline-block;align-self:center}'
-      + '.oeh-m-agents b{font-size:28px;font-weight:700;line-height:1}'
-      + '.oeh-m-agents span{font-size:18px;font-weight:600}'
-      + '.oeh-m-hint{margin:8px 0 0;color:#98a2b3;font-size:13px;line-height:1.45}'
-      + '.oeh-m-next{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:14px;padding:18px 20px;background:#eef3f6;border:1px solid #e3e8ec;border-radius:12px}'
-      + '.oeh-m-next h2{margin:0 0 4px;font-size:16px;font-weight:700;color:#213244}'
-      + '.oeh-m-next p{margin:0;color:#667085;font-size:14px;line-height:1.45;max-width:34rem}'
-      + '.oeh-m-next a{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:8px;background:#E05E2F;color:#fff;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}'
-      + '.oeh-m-next a svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}'
-      + '.oeh-m-fine{margin:14px 0 0;color:#98a2b3;font-size:12px;line-height:1.45}'
-      + '@media(max-width:900px){.oeh-hd{padding:0 24px}}'
-      + '@media(max-width:640px){.oeh-hd{height:auto;display:block;padding:14px 16px}.oeh-hd-r{margin-top:10px;gap:12px;flex-wrap:wrap}.oeh-m{padding:32px 16px 48px}.oeh-m h1{font-size:32px}.oeh-m-word{font-size:22px}.oeh-m-split{grid-template-columns:1fr}.oeh-m-split>div+div{border-left:0;border-top:1px solid #e4e5e7}.oeh-m-next{display:block}.oeh-m-next a{width:100%;margin-top:14px;justify-content:center;box-sizing:border-box}}'
-    document.head.appendChild(css)
-    document.body.appendChild(page)
     var quote = {}
     try { quote = JSON.parse(sessionStorage.getItem("oeh-quote") || "{}") } catch (err) {}
     var params = new URLSearchParams(location.search)
-    if (!quote.state && params.get("state")) quote.state = params.get("state")
-    ;["coverage", "age", "income", "doctor", "state"].forEach(function (key) {
-      var el = page.querySelector('[data-oeh="' + key + '"]')
-      if (el && quote[key]) el.textContent = quote[key]
-    })
+    function pick(keys) {
+      for (var i = 0; i < keys.length; i++) {
+        if (quote[keys[i]]) return quote[keys[i]]
+        if (params.get(keys[i])) return params.get(keys[i])
+      }
+      return ""
+    }
+    var rows = [
+      ["Coverage type", pick(["coverage"])],
+      ["Age", pick(["age"])],
+      ["Household income", pick(["income"])],
+      ["Doctor visits per year", pick(["doctor", "visits"])],
+      ["State", pick(["state"])]
+    ]
+    var met = rows.filter(function (row) { return row[1] }).length
+    var refId = ""
+    try { refId = sessionStorage.getItem("oeh-ref") || "" } catch (err) {}
+    if (!refId) {
+      var now = new Date()
+      refId = "OEH-" + String(now.getFullYear()).slice(2) + String(now.getMonth() + 1).padStart(2, "0") + "-" + String(Math.floor(100000 + Math.random() * 900000))
+      try { sessionStorage.setItem("oeh-ref", refId) } catch (err) {}
+    }
+    var dateText = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
+    var phone = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16.3v3a2 2 0 0 1-2.2 2A18.9 18.9 0 0 1 2.7 5.2 2 2 0 0 1 4.7 3h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.8l-1.4 1.4a15 15 0 0 0 4.9 4.9l1.4-1.4a2 2 0 0 1 1.8-.6l3 .5a2 2 0 0 1 1.7 1.9Z"/></svg>'
+    var mark = '<span class="wm"><span class="wm-open">Open</span><span class="wm-enroll">Enrollment</span><span class="wm-health">Health</span></span>'
+    var body = rows.map(function (row) {
+      return "<tr><th scope=\"row\">" + row[0] + "</th><td>" + (row[1] || "<span class=\"muted\">Not provided</span>") + "</td><td class=\"col-status\">Reviewed</td></tr>"
+    }).join("")
+    var page = document.createElement("div")
+    page.id = "oeh-match-page"
+    page.innerHTML = ''
+      + '<header class="site-header"><div class="utility-bar"><div class="container utility-inner"><span>Licensed assistance for health plan enrollment</span><span class="utility-right">Licensed insurance agency</span></div></div>'
+      + '<div class="container header-inner"><a href="/">' + mark + '</a><div class="header-contact"><span class="header-contact-label">Speak with a licensed agent</span><a class="header-phone" href="tel:+12394232552">' + phone + '(239) 423-2552</a></div></div></header>'
+      + '<main class="page"><div class="container">'
+      + '<nav class="steps" aria-label="Progress"><span class="step done">1. Your information</span><span class="step-sep">/</span><span class="step done">2. Review</span><span class="step-sep">/</span><span class="step current" aria-current="step">3. Results</span></nav>'
+      + '<div class="page-head"><h1>Your plan match results</h1><p>We reviewed your answers and matched you with a licensed enrollment provider. An agent can confirm plan options, costs, and eligibility with you by phone.</p></div>'
+      + '<div class="layout"><section class="panel results"><div class="panel-head"><h2>Match summary</h2><dl class="meta"><div><dt>Reference no.</dt><dd>' + refId + '</dd></div><div><dt>Date</dt><dd>' + dateText + '</dd></div></dl></div>'
+      + '<div class="match-row"><div class="match-provider"><span class="field-label">Matched provider</span>' + mark.replace('class="wm"', 'class="wm wm-lg"') + '</div>'
+      + '<dl class="match-stats"><div><dt>Match status</dt><dd><span class="status-tag">Matched</span></dd></div><div><dt>Criteria met</dt><dd>' + met + ' of 5</dd></div><div><dt>Licensed agents available</dt><dd>18</dd></div></dl></div>'
+      + '<table class="criteria-table"><caption>Information you provided</caption><thead><tr><th scope="col">Criteria</th><th scope="col">Your answer</th><th scope="col" class="col-status">Status</th></tr></thead><tbody>' + body + '</tbody></table></section>'
+      + '<aside class="panel next"><h2>Next step: speak with a licensed agent</h2><p>Call to review available plans, pricing, and enrollment details. There is no cost for the call and no obligation to enroll.</p>'
+      + '<a class="call-btn" href="tel:+12394232552">' + phone + 'Call (239) 423-2552</a><p class="tty">TTY users dial 711</p>'
+      + '<div class="prepare"><h3>Have this ready when you call</h3><ul><li>Your reference number: <strong>' + refId + '</strong></li><li>Your current insurance or Medicare card, if you have one</li><li>A list of your doctors and prescription medications</li></ul></div></aside></div>'
+      + '<div class="disclosures"><p>By calling, you will be connected with a licensed insurance agent. Plan availability, benefits, and pricing vary by location and eligibility.</p>'
+      + '<p>We do not offer every plan available in your area. Any information we provide is limited to those plans we do offer in your area. Please contact Medicare.gov, 1-800-MEDICARE, or your local State Health Insurance Program (SHIP) to get information on all of your options.</p>'
+      + '<p>Open Enrollment Health is not connected with or endorsed by the U.S. government or the federal Medicare program.</p></div></div></main>'
+      + '<footer class="site-footer"><div class="container footer-inner"><span>© ' + new Date().getFullYear() + ' Open Enrollment Health</span><span>Licensed insurance agency</span></div></footer>'
+    var css = document.createElement("style")
+    css.textContent = '@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap");'
+      + '#oeh-match-page{position:fixed;inset:0;z-index:2147483646;overflow:auto;background:#f4f6f8;color:#1f2933;font-family:"Public Sans","Helvetica Neue",Arial,sans-serif}'
+      + '#oeh-match-page *{box-sizing:border-box}#oeh-match-page a{color:inherit;text-decoration:none}'
+      + '.container{width:100%;max-width:1120px;margin:0 auto;padding:0 24px}'
+      + '.site-header{background:#fff;border-bottom:1px solid #d6dce3}'
+      + '.utility-bar{background:#1b2b40;color:#dfe5ec;font-size:12.5px}'
+      + '.utility-inner{height:30px;display:flex;align-items:center;justify-content:space-between}'
+      + '.header-inner{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}'
+      + '.wm{font-size:23px;font-weight:700;letter-spacing:-0.03em;white-space:nowrap;line-height:1}'
+      + '.wm-open{color:#1b2b40}.wm-enroll{color:#c4552c}.wm-health{color:#5f6b77;font-weight:400}'
+      + '.wm-lg{font-size:26px}'
+      + '.header-contact{display:flex;flex-direction:column;align-items:flex-end;gap:2px}'
+      + '.header-contact-label{color:#6b7785;font-size:12px}'
+      + '.header-phone{display:inline-flex;align-items:center;gap:7px;color:#1b2b40;font-size:18px;font-weight:700}'
+      + '.header-phone svg,.call-btn svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}'
+      + '.header-phone svg{width:16px;height:16px;color:#c4552c}'
+      + '.page{padding:22px 0 32px}'
+      + '.steps{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:#6b7785}'
+      + '.step.current{color:#1f2933;font-weight:600}.step-sep{color:#b3bcc6}'
+      + '.page-head{margin:14px 0 20px;max-width:760px}'
+      + '.page-head h1{margin:0 0 6px;font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-0.015em;color:#1b2b40}'
+      + '.page-head p{margin:0;font-size:15.5px;line-height:1.5;color:#3d4a57}'
+      + '.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}'
+      + '.panel{background:#fff;border:1px solid #d6dce3;border-radius:4px}'
+      + '.panel-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;border-bottom:1px solid #d6dce3;background:#fafbfc}'
+      + '.panel-head h2{margin:0;font-size:16px;font-weight:700;color:#1b2b40}'
+      + '.meta{display:flex;gap:24px;margin:0}.meta div{display:flex;gap:6px;font-size:13px}.meta dt{color:#6b7785}.meta dd{margin:0;color:#1f2933;font-weight:600}'
+      + '.match-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 20px;border-bottom:1px solid #d6dce3}'
+      + '.match-provider{display:flex;flex-direction:column;gap:8px}.field-label{font-size:12.5px;color:#6b7785}'
+      + '.match-stats{display:flex;gap:28px;margin:0}.match-stats div{display:flex;flex-direction:column;gap:4px}'
+      + '.match-stats dt{font-size:12.5px;color:#6b7785}.match-stats dd{margin:0;font-size:17px;font-weight:700;color:#1f2933}'
+      + '.status-tag{display:inline-block;padding:1px 8px;border:1px solid #b7d4c3;border-radius:3px;background:#eef6f1;color:#1d6b45;font-size:13px;font-weight:600;line-height:20px}'
+      + '.criteria-table{width:100%;border-collapse:collapse;font-size:14px}'
+      + '.criteria-table caption{padding:14px 20px 8px;text-align:left;font-size:13px;font-weight:600;color:#3d4a57}'
+      + '.criteria-table thead th{padding:8px 20px;border-top:1px solid #e6eaee;border-bottom:1px solid #d6dce3;background:#fafbfc;text-align:left;font-size:12px;font-weight:600;color:#6b7785;text-transform:uppercase;letter-spacing:.04em}'
+      + '.criteria-table tbody th,.criteria-table td{padding:10px 20px;border-bottom:1px solid #e6eaee;text-align:left}'
+      + '.criteria-table tbody tr:last-child th,.criteria-table tbody tr:last-child td{border-bottom:0}'
+      + '.criteria-table tbody th{width:38%;font-weight:500;color:#3d4a57}.criteria-table td{color:#1f2933;font-weight:600}'
+      + '.criteria-table .col-status{width:110px;text-align:right}.criteria-table td.col-status{color:#1d6b45;font-weight:500;font-size:13px}'
+      + '.muted{color:#6b7785;font-weight:400}'
+      + '.next{padding:20px;border-top:3px solid #1b2b40}.next h2{margin:0 0 8px;font-size:17px;line-height:1.3;font-weight:700;color:#1b2b40}'
+      + '.next>p{margin:0 0 16px;font-size:14px;line-height:1.5;color:#3d4a57}'
+      + '.call-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;height:48px;border-radius:4px;background:#c4552c;color:#fff;font-size:16px;font-weight:700}'
+      + '.call-btn svg{width:18px;height:18px}.tty{margin:8px 0 0;text-align:center;font-size:12.5px;color:#6b7785}'
+      + '.prepare{margin-top:18px;padding-top:16px;border-top:1px solid #e6eaee}.prepare h3{margin:0 0 8px;font-size:13.5px;font-weight:700}'
+      + '.prepare ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.5;color:#3d4a57}.prepare li+li{margin-top:4px}'
+      + '.disclosures{margin-top:20px;padding-top:14px;border-top:1px solid #d6dce3;max-width:900px}'
+      + '.disclosures p{margin:0 0 6px;font-size:12px;line-height:1.5;color:#6b7785}'
+      + '.site-footer{border-top:1px solid #d6dce3;background:#fff}'
+      + '.footer-inner{height:48px;display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:#6b7785}'
+      + '@media(max-width:960px){.layout{grid-template-columns:1fr}.next{order:-1}.prepare{display:none}}'
+      + '@media(max-width:680px){.container{padding:0 16px}.utility-right{display:none}.utility-inner{justify-content:center}.header-inner{height:60px}.wm{font-size:19px}.header-contact-label{display:none}.header-phone{font-size:15px}.page-head h1{font-size:25px}.panel-head{flex-direction:column;align-items:flex-start}.match-row{flex-direction:column;align-items:flex-start}.match-stats{width:100%;justify-content:space-between}.criteria-table .col-status{display:none}.footer-inner{flex-direction:column;justify-content:center;height:60px}}'
+    document.head.appendChild(css)
+    document.body.appendChild(page)
   }, 8200)
 }
