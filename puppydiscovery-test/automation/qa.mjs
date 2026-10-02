@@ -42,7 +42,7 @@ for(const file of htmlFiles){
     if(canonicals.has(canonical)) errors.push(r+': duplicate canonical with '+canonicals.get(canonical)+' -> '+canonical);
     else canonicals.set(canonical,r);
   }
-  if(!html.includes('name="robots" content="noindex,nofollow"') && !r.match(/^puppies\/(?!stuart-fl\/).+\/index\.html$/)){
+  if(!html.includes('name="robots" content="noindex') && !r.match(/^puppies\/(?!stuart-fl\/).+\/index\.html$/)){
     warnings.push(r+': staging page is not explicitly noindex');
   }
   if(r.startsWith('breeds/') && r!=='breeds/index.html'){
@@ -75,7 +75,9 @@ for(const p of ['index.html','puppies/index.html','puppies/stuart-fl/index.html'
 const sitemap=fs.readFileSync(path.join(ROOT,'sitemap.xml'),'utf8');
 for(const [canonical,r] of canonicals){
   if(r.startsWith('operations/')) continue;
-  if(!sitemap.includes('<loc>'+canonical+'</loc>') && !r.match(/^puppies\/(?!stuart-fl\/).+\/index\.html$/)){
+  const sourceHtml=fs.readFileSync(path.join(ROOT,r),'utf8');
+  const intentionallyNoindex=sourceHtml.includes('name="robots" content="noindex,follow"');
+  if(!intentionallyNoindex && !sitemap.includes('<loc>'+canonical+'</loc>') && !r.match(/^puppies\/(?!stuart-fl\/).+\/index\.html$/)){
     errors.push(r+': canonical missing from sitemap '+canonical);
   }
 }
