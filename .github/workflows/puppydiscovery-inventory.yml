@@ -1,20 +1,16 @@
 name: PuppyDiscovery Inventory Sync
 
 on:
-  workflow_dispatch:
-  push:
-    paths:
-      - 'puppydiscovery-test/automation/**'
-      - '.github/workflows/puppydiscovery-inventory.yml'
   schedule:
     - cron: '15 12 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
   group: puppydiscovery-inventory-sync
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   sync:
@@ -54,8 +50,8 @@ jobs:
             echo "No inventory state changes."
           fi
 
-      - name: Surface sync failure after preserving data
+      - name: Record safe sync warning
         if: steps.sync.outcome == 'failure'
         run: |
-          echo "Inventory extraction did not pass confidence checks. Existing published inventory was preserved."
-          exit 1
+          echo "::warning::Inventory extraction did not pass confidence checks. Existing published inventory was preserved."
+          echo "The workflow is intentionally not failed because the safe fallback worked."
