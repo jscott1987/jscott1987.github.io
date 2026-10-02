@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PuppyDiscovery Operations</title><meta name="robots" content="noindex,nofollow"><link rel="stylesheet" href="../styles.css"></head><body>
+<div class="topbar"><div class="shell"><span>PuppyDiscovery Operations · staging</span><span>Private authentication must be enabled before production.</span></div></div>
+<header class="header"><div class="shell header-inner"><a class="wordmark" href="../">Puppy<span>Discovery</span></a><nav class="nav"><a href="#overview">Overview</a><a href="#inventory">Inventory</a><a href="#breeds">Breeds</a><a href="#acquisition">Acquisition</a></nav><div class="header-actions"><a class="btn secondary" href="../">Public Site</a></div></div></header>
+<main class="ops-shell"><div class="shell">
+<section id="overview"><div class="inventory-head"><div><div class="eyebrow">Operations</div><h2>System overview</h2></div><p>Only verified data is shown. Unconnected metrics remain empty rather than being estimated.</p></div>
+<div class="ops-grid">
+<div class="ops-card"><span>Available puppies</span><strong data-kpi="available">0</strong></div>
+<div class="ops-card"><span>Active breeds</span><strong data-kpi="breeds">0</strong></div>
+<div class="ops-card"><span>Unavailable records</span><strong data-kpi="unavailable">0</strong></div>
+<div class="ops-card"><span>Inventory sync</span><strong data-kpi="sync">unknown</strong></div>
+</div>
+<div class="availability-box"><h2>Inventory sync health</h2><p data-sync-detail>Loading sync state…</p></div></section>
+
+<section id="inventory" class="section"><div class="section-head"><div><div class="eyebrow">Inventory</div><h2>Puppy records</h2></div><p>Live state from <code>data/puppies.json</code>.</p></div>
+<table class="ops-table"><thead><tr><th>Puppy</th><th>Breed</th><th>Sex</th><th>Status</th><th>Last observed</th><th>Source</th></tr></thead><tbody data-puppy-rows></tbody></table></section>
+
+<section id="breeds" class="section soft"><div class="section-head"><div><div class="eyebrow">Breeds</div><h2>Current inventory mix</h2></div><p>Counts are calculated only from currently available verified records.</p></div><table class="ops-table"><thead><tr><th>Breed</th><th>Available</th></tr></thead><tbody data-breed-rows></tbody></table></section>
+
+<section id="acquisition" class="section"><div class="section-head"><div><div class="eyebrow">Acquisition</div><h2>Collectors still to connect</h2></div><p>No fake acquisition numbers are shown.</p></div><div class="ops-grid">
+<div class="ops-card"><span>Visitors</span><strong>Not connected</strong></div>
+<div class="ops-card"><span>Phone clicks</span><strong>Not connected</strong></div>
+<div class="ops-card"><span>Lead forms</span><strong>Not connected</strong></div>
+<div class="ops-card"><span>Outbound Noble clicks</span><strong>Not connected</strong></div>
+</div></section>
+</div></main><script src="operations.js"></script></body></html>
