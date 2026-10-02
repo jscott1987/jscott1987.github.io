@@ -17,12 +17,12 @@ jobs:
         run: node puppydiscovery-test/scripts/sync-inventory.mjs
       - name: Commit verified inventory changes
         run: |
-          if git diff --quiet -- puppydiscovery-test/data; then
+          if git diff --quiet -- puppydiscovery-test/data puppydiscovery-test/puppies puppydiscovery-test/sitemap-puppies.xml; then
             echo "No inventory changes."
             exit 0
           fi
           git config user.name "PuppyDiscovery Sync"
           git config user.email "actions@github.com"
-          git add puppydiscovery-test/data
-          git commit -m "Sync PuppyDiscovery inventory"
+          git add puppydiscovery-test/data puppydiscovery-test/puppies puppydiscovery-test/sitemap-puppies.xml
+          git commit -m "Sync PuppyDiscovery inventory and puppy pages"
           git push
