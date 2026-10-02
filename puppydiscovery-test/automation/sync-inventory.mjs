@@ -182,6 +182,8 @@ function updateSitemapWithPuppies(puppies) {
 
 const jsonPayloads = [];
 const domCandidates = [];
+const iframeCandidates = [];
+const imageDiagnostics = [];
 let browser;
 
 try {
@@ -213,7 +215,12 @@ try {
       const body = await response.text();
       if (body.length > 2_000_000) return;
       const parsed = JSON.parse(body);
-      jsonPayloads.push({ url, parsed });
+      jsonPayloads.push({
+        url,
+        parsed,
+        body_sample: body.slice(0, 24000),
+        top_keys: parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? Object.keys(parsed).slice(0, 80) : []
+      });
     } catch {}
   });
 
@@ -286,6 +293,17 @@ try {
   });
   domCandidates.push(...dom);
 
+  const visualDiagnostics = await page.evaluate(() => ({
+    iframes: [...document.querySelectorAll('iframe[src]')].map(f => f.src).slice(0, 30),
+    images: [...document.querySelectorAll('img')].slice(0, 80).map(img => ({
+      src: img.currentSrc || img.src || '',
+      alt: img.alt || '',
+      parent: (img.closest('a,article,li,div')?.outerHTML || '').slice(0, 4000)
+    }))
+  }));
+  iframeCandidates.push(...visualDiagnostics.iframes);
+  imageDiagnostics.push(...visualDiagnostics.images);
+
   const discovered = [];
   for (const item of jsonPayloads) walk(item.parsed, discovered);
 
@@ -309,7 +327,14 @@ try {
     run_at: now,
     source: SOURCE,
     json_responses_seen: jsonPayloads.length,
+    json_response_summaries: jsonPayloads.map(x => ({
+      url: x.url,
+      top_keys: x.top_keys,
+      body_sample: x.body_sample
+    })),
     dom_candidates_seen: domCandidates.length,
+    iframe_candidates: iframeCandidates,
+    image_diagnostics: imageDiagnostics,
     normalized_candidates: normalized
   }, null, 2) + '\n');
 
