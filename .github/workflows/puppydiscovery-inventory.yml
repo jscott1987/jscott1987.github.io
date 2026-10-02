@@ -1,20 +1,19 @@
 name: PuppyDiscovery Inventory Sync
 
 on:
-  push:
-    paths:
-      - 'puppydiscovery-test/automation/sync-inventory.mjs'
-      - '.github/workflows/puppydiscovery-inventory.yml'
   schedule:
     - cron: '15 12 * * *'
   workflow_dispatch:
+  push:
+    paths:
+      - 'puppydiscovery-test/.inventory-release'
 
 permissions:
   contents: write
 
 concurrency:
   group: puppydiscovery-inventory-sync
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   sync:
