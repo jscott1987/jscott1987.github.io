@@ -1,0 +1,17 @@
+{
+  "target_domain": "https://puppydiscovery.com",
+  "generated_at": "2026-10-02",
+  "indexable_target_urls": 47,
+  "breed_pages": 36,
+  "location_pages": 6,
+  "core_pages": 5,
+  "preview_host": "https://openenrollment.health/puppydiscovery-test/",
+  "preview_policy": "noindex,nofollow",
+  "inventory_source": "https://thenoblepaw.com/available-puppies/",
+  "inventory_status": "public source confirmed; direct structured puppy feed not yet resolved",
+  "notes": [
+    "Do not remove preview noindex until the PuppyDiscovery.com deployment is live.",
+    "Do not submit the sitemap from the Open Enrollment Health host.",
+    "Breed-city doorway page expansion is intentionally excluded."
+  ]
+}
