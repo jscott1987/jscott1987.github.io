@@ -302,3 +302,129 @@ button{cursor:pointer}
 }
 .inventory-photo-placeholder{height:100%;display:grid;place-items:center;background:#f0f2f5;color:#8a919a;font-size:12px}.ops-shell{padding:36px 0 72px}.ops-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.ops-card{border:1px solid var(--line);border-radius:7px;padding:18px;background:#fff}.ops-card span{display:block;font-size:11px;color:#8a919a}.ops-card strong{display:block;margin-top:8px;font-size:24px;font-weight:500;color:var(--navy)}.ops-table{width:100%;border-collapse:collapse;margin-top:24px;font-size:12px}.ops-table th,.ops-table td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}.ops-table th{font-weight:500;color:#68717d;background:#fafbfc}.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#9aa3ae;margin-right:6px}.status-success{background:#2f9e67}.status-error{background:#d66b55}@media(max-width:900px){.ops-grid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.ops-grid{grid-template-columns:1fr}.ops-table{display:block;overflow:auto}}
 .ops-auth{min-height:70vh;display:grid;place-items:center;padding:40px 0}.ops-auth-card{width:min(420px,calc(100% - 30px));border:1px solid var(--line);border-radius:8px;padding:28px;background:#fff}.ops-auth-card h1{font-size:28px;font-weight:500;color:var(--navy);margin:8px 0}.ops-auth-card p{font-size:13px;color:var(--muted);line-height:1.6}.ops-auth-card input{width:100%;border:1px solid var(--line);border-radius:6px;padding:11px;margin:18px 0 10px}.ops-error{font-size:12px;color:#b54737;margin-top:10px}.ops-hidden{display:none!important}.ops-leads{margin-top:24px}
+
+/* Homepage retail baseline: Petland-style structure without seasonal theme */
+body.pd-retail-home{background:#fff;color:#263246}
+.pd-retail-home .shell{width:min(calc(100% - 48px),1215px)}
+.pd-brandbar{background:#1767c8;color:#fff}
+.pd-brandbar-inner{height:94px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.pd-brandmark{display:flex;flex-direction:column;gap:2px;color:#fff}
+.pd-brandmark strong{font-size:34px;line-height:1;font-weight:600;letter-spacing:-.045em}
+.pd-brandmark span{font-size:11px;font-weight:400;opacity:.9}
+.pd-contact{display:flex;align-items:center;gap:34px;text-align:right}
+.pd-contact-block{display:flex;flex-direction:column;gap:3px}
+.pd-contact-block span{font-size:11px;opacity:.82}
+.pd-contact-block a{font-size:15px;font-weight:600;color:#fff}
+.pd-retail-nav{background:#eef1f5;border-bottom:1px solid #dfe4eb}
+.pd-retail-nav-inner{height:58px;display:flex;align-items:center;gap:28px}
+.pd-menu-button{display:inline-flex;align-items:center;gap:10px;background:#17243a;color:#fff;border-radius:24px;padding:11px 18px;font-size:12px;font-weight:600}
+.pd-menu-dots{font-size:16px;line-height:1}
+.pd-retail-nav a:not(.pd-menu-button){font-size:13px;font-weight:400;color:#46536a}
+.pd-retail-nav a:not(.pd-menu-button):hover{color:#1767c8}
+.pd-nav-spacer{flex:1}
+.pd-nav-call{font-weight:500!important;color:#17243a!important}
+
+.pd-commerce-hero{
+  min-height:414px;
+  position:relative;
+  overflow:hidden;
+  background:#0e5fb9;
+}
+.pd-commerce-hero:before{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(8,57,112,.98) 0%,rgba(14,95,185,.93) 42%,rgba(14,95,185,.25) 68%,rgba(14,95,185,.04) 100%),
+    url("https://stprdkm.blob.core.windows.net/public/images/3780000/3782000/3782388_800.jpg") right 13% center/560px auto no-repeat;
+}
+.pd-commerce-hero-inner{position:relative;z-index:1;padding:68px 0 54px}
+.pd-commerce-copy{width:min(560px,58%)}
+.pd-commerce-kicker{font-size:13px;font-weight:500;color:#dcecff;margin-bottom:12px}
+.pd-commerce-copy h1{margin:0;color:#fff;font-size:50px;line-height:1.05;font-weight:500;letter-spacing:-.04em}
+.pd-commerce-copy p{margin:16px 0 0;color:#eef5ff;font-size:17px;line-height:1.55;max-width:530px}
+.pd-commerce-meta{margin-top:18px;font-size:12px;color:#c9def7}
+.pd-commerce-actions{display:flex;gap:11px;margin-top:28px;flex-wrap:wrap}
+.pd-commerce-actions .btn{padding:13px 22px}
+.pd-commerce-actions .btn.pd-white{background:#fff;color:#17243a;border-color:#fff}
+.pd-commerce-actions .btn.pd-white:hover{background:#f7f9fc;border-color:#f7f9fc}
+.pd-commerce-actions .btn.pd-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.62)}
+.pd-commerce-actions .btn.pd-outline:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+
+.pd-market{padding:18px 0 70px;background:#fff}
+.pd-market-title{font-size:20px;font-weight:500;color:#353f4e;margin:0 0 10px}
+.pd-searchbar{height:50px;border:1px solid #d7dce4;border-radius:5px;background:#fff;display:grid;grid-template-columns:50px 50px 1fr auto;align-items:center;box-shadow:0 2px 6px rgba(25,39,58,.09)}
+.pd-search-icon,.pd-filter-icon{height:100%;display:grid;place-items:center;color:#566275;border-right:1px solid #edf0f4;font-size:17px}
+.pd-searchbar input{border:0;outline:0;padding:0 16px;font-size:14px;color:#2f3a4d;background:transparent}
+.pd-search-count{padding:0 16px;font-size:11px;color:#7c8797}
+.pd-live-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:14px}
+.pd-live-card{border:1px solid #dfe4ea;border-radius:8px;background:#fff;overflow:hidden}
+.pd-live-photo{position:relative;height:300px;background:#e8edf3;overflow:hidden}
+.pd-live-photo img{width:100%;height:100%;object-fit:cover}
+.pd-available-tag{position:absolute;left:10px;top:10px;background:rgba(239,244,246,.95);color:#304255;border:1px solid rgba(255,255,255,.8);border-radius:18px;padding:7px 11px;font-size:10px;font-weight:500}
+.pd-view-chip{position:absolute;right:10px;top:10px;width:33px;height:33px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;color:#1767c8;font-size:16px}
+.pd-card-body{padding:13px 14px 14px}
+.pd-card-name{font-size:18px;line-height:1.15;font-weight:500;color:#263246;margin:0}
+.pd-card-breed{font-size:12px;color:#667085;margin-top:4px}
+.pd-card-meta{font-size:11px;color:#8a93a0;margin-top:7px}
+.pd-card-actions{margin-top:12px;display:flex;gap:8px}
+.pd-card-actions a{flex:1}
+.pd-card-actions .btn{padding:10px 11px;font-size:12px}
+.pd-card-actions .btn.secondary{background:#fff}
+.pd-market-footer{display:flex;justify-content:center;margin-top:24px}
+
+.pd-retail-strip{background:#f3f5f8;border-top:1px solid #e4e8ed;border-bottom:1px solid #e4e8ed}
+.pd-retail-strip-inner{display:grid;grid-template-columns:repeat(3,1fr)}
+.pd-retail-strip-item{padding:25px 28px;border-right:1px solid #dfe4ea}
+.pd-retail-strip-item:last-child{border-right:0}
+.pd-retail-strip-item h2{margin:0 0 7px;font-size:18px;font-weight:500;color:#263246}
+.pd-retail-strip-item p{margin:0;color:#6f7886;font-size:12px;line-height:1.55}
+.pd-retail-strip-item a{display:inline-block;margin-top:11px;color:#1767c8;font-size:12px;font-weight:500}
+
+.pd-simple-footer{background:#17243a;color:#fff;padding:38px 0}
+.pd-simple-footer-inner{display:flex;justify-content:space-between;gap:35px;align-items:flex-start}
+.pd-simple-footer .pd-brandmark strong{font-size:25px}
+.pd-simple-footer p{font-size:11px;line-height:1.6;color:#b8c3d2;max-width:400px}
+.pd-simple-footer-links{display:flex;gap:24px;font-size:11px;color:#d8e0ea;flex-wrap:wrap}
+
+@media(max-width:1020px){
+  .pd-contact{gap:18px}
+  .pd-retail-nav-inner{gap:17px}
+  .pd-retail-nav a:not(.pd-menu-button){display:none}
+  .pd-nav-call{display:block!important}
+  .pd-commerce-hero:before{background:
+    linear-gradient(90deg,rgba(8,57,112,.98) 0%,rgba(14,95,185,.93) 50%,rgba(14,95,185,.35) 100%),
+    url("https://stprdkm.blob.core.windows.net/public/images/3780000/3782000/3782388_800.jpg") right center/470px auto no-repeat}
+  .pd-commerce-copy{width:62%}
+  .pd-live-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+  .pd-retail-home .shell{width:calc(100% - 28px)}
+  .pd-brandbar-inner{height:72px}
+  .pd-brandmark strong{font-size:27px}
+  .pd-brandmark span{display:none}
+  .pd-contact-block:first-child{display:none}
+  .pd-contact{gap:0}
+  .pd-contact-block a{font-size:13px}
+  .pd-retail-nav-inner{height:52px}
+  .pd-nav-call{margin-left:auto}
+  .pd-commerce-hero{min-height:490px}
+  .pd-commerce-hero:before{background:
+    linear-gradient(180deg,rgba(8,57,112,.98) 0%,rgba(14,95,185,.88) 56%,rgba(14,95,185,.42) 100%),
+    url("https://stprdkm.blob.core.windows.net/public/images/3780000/3782000/3782388_800.jpg") center bottom/430px auto no-repeat}
+  .pd-commerce-hero-inner{padding:42px 0 210px}
+  .pd-commerce-copy{width:100%}
+  .pd-commerce-copy h1{font-size:39px}
+  .pd-commerce-copy p{font-size:14px;max-width:360px}
+  .pd-searchbar{grid-template-columns:42px 42px 1fr}
+  .pd-search-count{display:none}
+  .pd-live-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .pd-live-photo{height:215px}
+  .pd-card-body{padding:11px}
+  .pd-card-name{font-size:16px}
+  .pd-card-actions{display:block}
+  .pd-card-actions .btn.secondary{display:none}
+  .pd-retail-strip-inner{grid-template-columns:1fr}
+  .pd-retail-strip-item{border-right:0;border-bottom:1px solid #dfe4ea}
+  .pd-retail-strip-item:last-child{border-bottom:0}
+  .pd-simple-footer-inner{flex-direction:column}
+}
