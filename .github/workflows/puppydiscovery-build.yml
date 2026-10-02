@@ -1,0 +1,47 @@
+name: Build PuppyDiscovery Production Branch
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'puppydiscovery-test/**'
+      - '.github/workflows/puppydiscovery-build.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: puppydiscovery-production-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build production bundle
+        run: node puppydiscovery-test/automation/build-production.mjs
+
+      - name: Stage production bundle outside worktree
+        run: |
+          rm -rf /tmp/puppydiscovery-dist
+          cp -R puppydiscovery-dist /tmp/puppydiscovery-dist
+
+      - name: Publish isolated production branch
+        run: |
+          git config user.name "PuppyDiscovery Build Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout --orphan puppydiscovery-production
+          git rm -rf .
+          cp -R /tmp/puppydiscovery-dist/. .
+          touch .nojekyll
+          git add -A
+          git commit -m "Build PuppyDiscovery production bundle"
+          git push --force origin HEAD:puppydiscovery-production
