@@ -29,6 +29,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Syntax check inventory job
+        run: node --check puppydiscovery-test/automation/sync-inventory.mjs
+
       - name: Install Playwright
         run: |
           npm install --no-save playwright@1.55.1
