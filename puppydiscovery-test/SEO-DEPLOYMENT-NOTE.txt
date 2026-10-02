@@ -1,0 +1,5 @@
+PuppyDiscovery staging pages are protected from indexing with page-level noindex meta tags. Production robots.txt should contain:
+
+User-agent: *
+Allow: /
+Sitemap: https://puppydiscovery.com/sitemap.xml
