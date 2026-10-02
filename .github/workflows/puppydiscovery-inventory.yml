@@ -41,10 +41,10 @@ jobs:
 
       - name: Commit inventory state
         run: |
-          if [[ -n "$(git status --porcelain -- puppydiscovery-test/data)" ]]; then
+          if [[ -n "$(git status --porcelain -- puppydiscovery-test/data puppydiscovery-test/puppies puppydiscovery-test/sitemap.xml)" ]]; then
             git config user.name "PuppyDiscovery Inventory Bot"
             git config user.email "actions@users.noreply.github.com"
-            git add puppydiscovery-test/data
+            git add puppydiscovery-test/data puppydiscovery-test/puppies puppydiscovery-test/sitemap.xml
             git commit -m "Update PuppyDiscovery inventory state"
             git push
           else
