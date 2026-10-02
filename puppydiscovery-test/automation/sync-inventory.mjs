@@ -84,8 +84,14 @@ function normalize(obj) {
   const sex = first(obj, ['sex','gender']);
   const sourceUrl = urlFrom(obj);
   const image = imageFrom(obj);
-  const externalId = first(obj, ['id','ID','pet_id','puppy_id','sku','stock_number','stockNumber']);
-  const key = externalId || sourceUrl || [name, breed, sex].filter(Boolean).join('|');
+  const externalId = first(obj, ['id','ID','pet_id','puppy_id','sku','stock_number','stockNumber','reference','reference_number','ref']);
+  const birthDate = first(obj, ['birth_date','birthDate','birthday','date_of_birth','dob','born','born_on']);
+  const readyDate = first(obj, ['ready_date','readyDate','available_date','availableDate','available_on','ready']);
+  const price = first(obj, ['price','sale_price','salePrice','amount']);
+  const color = first(obj, ['color','coat_color','coatColor']);
+  const weight = first(obj, ['weight','current_weight','currentWeight','adult_weight','adultWeight']);
+  const generation = first(obj, ['generation','breed_generation','breedGeneration']);
+  const key = externalId || sourceUrl || [name, breed, sex, birthDate].filter(Boolean).join('|');
   if (!key || (!name && !breed)) return null;
   return {
     key: String(key),
@@ -94,6 +100,12 @@ function normalize(obj) {
     breed: breed || null,
     breed_slug: breed ? slug(breed) : null,
     sex: sex || null,
+    birth_date: birthDate || null,
+    ready_date: readyDate || null,
+    price: price || null,
+    color: color || null,
+    weight: weight || null,
+    generation: generation || null,
     image_url: image || null,
     source_url: sourceUrl || null,
     physical_location: 'Stuart, FL',
