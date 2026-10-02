@@ -21,7 +21,15 @@
   function card(p){
     const puppySlug=slug((p.name||p.external_id||'puppy')+'-'+(p.external_id||p.key||'')).slice(0,90);
     const img=p.image_url?'<img src="'+esc(p.image_url)+'" alt="'+esc((p.name||'Puppy')+(p.breed?' the '+p.breed:''))+'" loading="lazy">':'<div class="inventory-photo-placeholder">Photo coming soon</div>';
-    return '<article class="puppy-card"><div class="puppy-image">'+img+'</div><div class="card-body"><div class="card-kicker">'+esc(p.sex||'Puppy')+(p.external_id?' · #'+esc(p.external_id):'')+'</div><h3>'+esc(p.name||'Available Puppy')+'</h3><div class="breed">'+esc(p.breed||'Breed information available')+'</div><div class="meta">'+esc(p.physical_location||'Stuart, Florida')+'</div><div class="card-actions"><a class="btn" href="'+base+'puppies/'+puppySlug+'/">View Puppy</a><a class="phone-link" href="tel:7723480800">Call</a></div></div></article>';
+    const details=[
+      p.generation,
+      p.birth_date ? 'Born '+p.birth_date : null,
+      p.ready_date ? 'Ready '+p.ready_date : null,
+      p.color,
+      p.weight,
+      p.price ? String(p.price) : null
+    ].filter(Boolean);
+    return '<article class="puppy-card"><div class="puppy-image">'+img+'</div><div class="card-body"><div class="card-kicker">'+esc(p.sex||'Puppy')+(p.external_id?' · #'+esc(p.external_id):'')+'</div><h3>'+esc(p.name||'Available Puppy')+'</h3><div class="breed">'+esc(p.breed||'Breed information available')+'</div><div class="meta">'+esc(p.physical_location||'Stuart, Florida')+'</div>'+(details.length?'<div class="meta">'+details.map(esc).join(' · ')+'</div>':'')+'<div class="card-actions"><a class="btn" href="'+asset('puppies/'+puppySlug+'/')+'">View Puppy</a><a class="phone-link" href="tel:7723480800">Call</a></div></div></article>';
   }
   document.querySelectorAll('[data-live-inventory]').forEach(el=>{
     const breed=(el.dataset.breed||'').toLowerCase();
