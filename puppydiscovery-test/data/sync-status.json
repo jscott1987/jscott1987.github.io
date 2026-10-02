@@ -1,8 +1,9 @@
 {
-  "last_run": "2026-10-02T21:01:49.484Z",
+  "last_run": "2026-10-02T21:30:59.270Z",
   "last_successful_run": null,
-  "status": "error",
+  "status": "failed_safe",
   "records_seen": 0,
   "records_published": 0,
-  "message": "Error: Source returned HTTP 403\n    at file:///home/runner/work/jscott1987.github.io/jscott1987.github.io/puppydiscovery-test/automation/sync-inventory.mjs:131:52"
+  "message": "Source loaded, but no high-confidence puppy records were extracted. Existing inventory preserved.",
+  "diagnostic_candidates": 0
 }
