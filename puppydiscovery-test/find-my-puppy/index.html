@@ -17,6 +17,7 @@
 <script>
 const params=new URLSearchParams(location.search);
 if(params.get('breed')) document.getElementById('f-breed').value=params.get('breed');
+const requestedPuppy=params.get('puppy')||'';
 const form=document.getElementById('find-form'),statusEl=document.getElementById('f-status'),submit=document.getElementById('f-submit');
 function smsFallback(data){
   const body='Hi, I\'m '+(data.name||'interested in a puppy')+'. I\'m looking for '+(data.breed||'a puppy')+'. Timing: '+data.timing+'. Sex: '+data.sex+'. '+(data.notes||'');
@@ -31,6 +32,7 @@ form.addEventListener('submit',async e=>{
     name:document.getElementById('f-name').value.trim(),
     phone:document.getElementById('f-phone').value.trim(),
     email:document.getElementById('f-email').value.trim(),
+    puppy_name:requestedPuppy,
     notes:document.getElementById('f-notes').value.trim(),
     source_path:location.pathname,
     anonymous_id:window.PuppyDiscoveryAnalytics?.anonymousId||null,
