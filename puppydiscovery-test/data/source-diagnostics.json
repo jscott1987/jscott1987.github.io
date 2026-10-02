@@ -1,0 +1,7 @@
+{
+  "source_url": "https://thenoblepaw.com/available-puppies/",
+  "status": "not_analyzed_by_runtime_yet",
+  "parser_policy": "structured data first; conservative link fallback; preserve inventory when extraction returns zero",
+  "iframe_sources": [],
+  "endpoint_hints": []
+}
