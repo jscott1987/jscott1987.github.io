@@ -1,5 +1,53 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Find My Puppy | PuppyDiscovery</title><meta name="description" content="Tell PuppyDiscovery what breed, size, sex, and timing you are looking for and start a focused puppy search with The Noble Paw in Stuart, Florida."><meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://puppydiscovery.com/find-my-puppy/"><link rel="stylesheet" href="../styles.css"></head><body><div class="topbar"><div class="shell"><span>Questions about a puppy?</span><a href="tel:7723480800">Call or text 772-348-0800</a></div></div>
-<header class="header"><div class="shell header-inner"><a class="wordmark" href="../">Puppy<span>Discovery</span></a><nav class="nav"><a href="../puppies/">Puppies</a><a href="../breeds/">Breeds</a><a href="../find-my-puppy/">Find My Puppy</a><a href="../locations/">Locations</a><a href="../puppies/stuart-fl/">Stuart</a></nav><div class="header-actions"><a class="btn" href="../puppies/">View Puppies</a></div></div></header><main><section class="directory-hero"><div class="shell"><div class="eyebrow">Find My Puppy</div><h1>Tell us what you're looking for</h1><p>Use this path when the right puppy is not currently visible. The form prepares a text message to The Noble Paw so you control when the request is sent.</p><form class="find-form" id="find-form"><div class="find-grid"><label>Breed<input id="f-breed" placeholder="Cavapoo, French Bulldog, open to ideas"></label><label>Timing<select id="f-timing"><option>As soon as possible</option><option>Within 30 days</option><option>Within 3 months</option><option>Just researching</option></select></label><label>Preferred sex<select id="f-sex"><option>No preference</option><option>Female</option><option>Male</option></select></label><label>Your name<input id="f-name" placeholder="Name"></label><label class="find-full">Anything else?<textarea id="f-notes" placeholder="Size, color, temperament, budget, or other preferences"></textarea></label><div class="find-full"><button class="btn" type="submit">Text My Puppy Request</button> <a class="btn secondary" href="tel:7723480800">Call Instead</a></div></div></form></div></section></main><footer class="footer"><div class="shell"><div class="footer-main"><div class="footer-brand"><a class="wordmark" href="../" style="color:#fff">Puppy<span>Discovery</span></a><p>Browse puppies, explore breeds, and connect with The Noble Paw in Stuart, Florida.</p></div><div class="footer-links"><div class="footer-col"><strong>Browse</strong><a href="../puppies/">Puppies</a><a href="../breeds/">Breeds</a><a href="../find-my-puppy/">Find My Puppy</a></div><div class="footer-col"><strong>Local</strong><a href="../locations/">Locations</a><a href="../puppies/stuart-fl/">Stuart</a></div><div class="footer-col"><strong>Contact</strong><a href="tel:7723480800">772-348-0800</a><a href="https://thenoblepaw.com/">The Noble Paw</a></div></div></div></div></footer><script>
-const params=new URLSearchParams(location.search); if(params.get('breed')) document.getElementById('f-breed').value=params.get('breed');
-document.getElementById('find-form').addEventListener('submit',e=>{e.preventDefault();const breed=document.getElementById('f-breed').value||'a puppy';const timing=document.getElementById('f-timing').value;const sex=document.getElementById('f-sex').value;const name=document.getElementById('f-name').value;const notes=document.getElementById('f-notes').value;const body=`Hi, I'm ${name||'interested in a puppy'}. I'm looking for ${breed}. Timing: ${timing}. Sex: ${sex}. ${notes}`;location.href='sms:7723480800?body='+encodeURIComponent(body);});
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Find My Puppy | PuppyDiscovery</title><meta name="description" content="Tell PuppyDiscovery what breed, sex, size, and timing you are looking for and start a focused puppy search with The Noble Paw in Stuart, Florida."><meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://puppydiscovery.com/find-my-puppy/"><link rel="stylesheet" href="../styles.css"></head><body>
+<div class="topbar"><div class="shell"><span>Questions about a puppy?</span><a href="tel:7723480800">Call or text 772-348-0800</a></div></div>
+<header class="header"><div class="shell header-inner"><a class="wordmark" href="../">Puppy<span>Discovery</span></a><nav class="nav"><a href="../puppies/">Puppies</a><a href="../breeds/">Breeds</a><a href="./">Find My Puppy</a><a href="../locations/">Locations</a><a href="../puppies/stuart-fl/">Stuart</a></nav><div class="header-actions"><a class="btn" href="../puppies/">View Puppies</a></div></div></header>
+<main><section class="directory-hero"><div class="shell"><div class="eyebrow">Find My Puppy</div><h1>Tell us what you're looking for</h1><p>Use this when the exact puppy is not currently listed. Your request can be routed directly to The Noble Paw with the page and campaign attribution attached.</p>
+<form class="find-form" id="find-form"><div class="find-grid">
+<label>Breed<input id="f-breed" name="breed" placeholder="Cavapoo, French Bulldog, open to ideas"></label>
+<label>Timing<select id="f-timing" name="timing"><option>As soon as possible</option><option>Within 30 days</option><option>Within 3 months</option><option>Just researching</option></select></label>
+<label>Preferred sex<select id="f-sex" name="sex"><option>No preference</option><option>Female</option><option>Male</option></select></label>
+<label>Your name<input id="f-name" name="name" autocomplete="name" placeholder="Name"></label>
+<label>Phone<input id="f-phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555"></label>
+<label>Email<input id="f-email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com"></label>
+<label class="find-full">Anything else?<textarea id="f-notes" name="notes" placeholder="Size, color, temperament, budget, or other preferences"></textarea></label>
+<div class="find-full"><button class="btn" id="f-submit" type="submit">Send My Puppy Request</button> <a class="btn secondary" href="tel:7723480800">Call Instead</a><div class="note" id="f-status">Phone or email is required so the store can follow up.</div></div>
+</div></form></div></section></main>
+<footer class="footer"><div class="shell"><div class="footer-main"><div class="footer-brand"><a class="wordmark" href="../" style="color:#fff">Puppy<span>Discovery</span></a><p>Browse puppies, explore breeds, and connect with The Noble Paw in Stuart, Florida.</p></div><div class="footer-links"><div class="footer-col"><strong>Browse</strong><a href="../puppies/">Puppies</a><a href="../breeds/">Breeds</a></div><div class="footer-col"><strong>Local</strong><a href="../locations/">Locations</a><a href="../puppies/stuart-fl/">Stuart</a></div><div class="footer-col"><strong>Contact</strong><a href="tel:7723480800">772-348-0800</a></div></div></div></div></footer>
+<script>
+const params=new URLSearchParams(location.search);
+if(params.get('breed')) document.getElementById('f-breed').value=params.get('breed');
+const form=document.getElementById('find-form'),statusEl=document.getElementById('f-status'),submit=document.getElementById('f-submit');
+function smsFallback(data){
+  const body='Hi, I\'m '+(data.name||'interested in a puppy')+'. I\'m looking for '+(data.breed||'a puppy')+'. Timing: '+data.timing+'. Sex: '+data.sex+'. '+(data.notes||'');
+  location.href='sms:7723480800?body='+encodeURIComponent(body);
+}
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const data={
+    breed:document.getElementById('f-breed').value.trim(),
+    timing:document.getElementById('f-timing').value,
+    sex:document.getElementById('f-sex').value,
+    name:document.getElementById('f-name').value.trim(),
+    phone:document.getElementById('f-phone').value.trim(),
+    email:document.getElementById('f-email').value.trim(),
+    notes:document.getElementById('f-notes').value.trim(),
+    source_path:location.pathname,
+    anonymous_id:window.PuppyDiscoveryAnalytics?.anonymousId||null,
+    attribution:Object.fromEntries([...params.entries()].filter(([k])=>k.startsWith('utm_')))
+  };
+  if(!data.phone&&!data.email){statusEl.textContent='Enter a phone number or email so the store can respond.';return;}
+  submit.disabled=true;submit.textContent='Sending…';statusEl.textContent='';
+  try{
+    const r=await fetch('/api/leads',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({...data,notes:(data.sex?'Preferred sex: '+data.sex+'. ':'')+data.notes})});
+    if(!r.ok) throw new Error('lead endpoint '+r.status);
+    const result=await r.json();
+    window.PuppyDiscoveryAnalytics?.track('lead_submit',{breed:data.breed,timing:data.timing});
+    form.innerHTML='<div class="availability-box"><h2>Request received.</h2><p>Your puppy request was saved successfully. The store can follow up using the contact information you provided.</p><div class="inline-actions"><a class="btn" href="../puppies/">Browse Puppies</a><a class="btn secondary" href="tel:7723480800">Call 772-348-0800</a></div></div>';
+  }catch(err){
+    statusEl.textContent='The online form is not available on this preview. Opening a text message instead.';
+    submit.disabled=false;submit.textContent='Send My Puppy Request';
+    setTimeout(()=>smsFallback(data),400);
+  }
+});
 </script></body></html>
