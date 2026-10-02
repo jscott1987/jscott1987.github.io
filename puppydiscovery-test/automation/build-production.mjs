@@ -24,7 +24,7 @@ function copy(src,dst){
     if(!html.includes('site.js')){
       const rel=path.relative(path.dirname(src),ROOT).split(path.sep).filter(Boolean);
       const prefix=rel.length? '../'.repeat(rel.length):'./';
-      html=html.replace('</body>',\`<script src="\${prefix}site.js"></script></body>\`);
+      html=html.replace('</body>',`<script src="${prefix}site.js"></script></body>`);
     }
     buf=Buffer.from(html);
   }
