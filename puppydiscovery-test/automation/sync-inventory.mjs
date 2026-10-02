@@ -35,7 +35,15 @@ function first(obj, keys) {
   return '';
 }
 function imageFrom(obj) {
-  for (const k of ['image','image_url','imageUrl','photo','photo_url','photoUrl','thumbnail','featured_image','featuredImage']) {
+  const photo = obj?.Photo || obj?.photo;
+  if (photo && typeof photo === 'object') {
+    const base = first(photo, ['BaseUrl','baseUrl','base_url']);
+    const file = first(photo, ['Size800','Size500','Original','size800','size500','original']);
+    if (base && file) return base + file;
+    const direct = first(photo, ['url','src','source_url']);
+    if (/^https?:\/\//i.test(direct)) return direct;
+  }
+  for (const k of ['image','image_url','imageUrl','photo_url','photoUrl','thumbnail','featured_image','featuredImage']) {
     const v = obj?.[k];
     if (typeof v === 'string' && /^https?:\/\//i.test(v)) return v;
     if (v && typeof v === 'object') {
@@ -46,13 +54,13 @@ function imageFrom(obj) {
   return '';
 }
 function urlFrom(obj) {
-  return first(obj, ['url','link','permalink','href','source_url','sourceUrl']);
+  return first(obj, ['url','link','permalink','href','source_url','sourceUrl','PublicUrl']);
 }
 function scoreObject(obj) {
   if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return 0;
-  const name = first(obj, ['name','title','pet_name','puppy_name','display_name']);
-  const breed = first(obj, ['breed','breed_name','breedName','type']);
-  const sex = first(obj, ['sex','gender']);
+  const name = first(obj, ['name','title','pet_name','puppy_name','display_name','PetName']);
+  const breed = first(obj, ['breed','breed_name','breedName','type','BreedName']);
+  const sex = first(obj, ['sex','gender','Gender']);
   const img = imageFrom(obj);
   const url = urlFrom(obj);
   let score = 0;
@@ -79,36 +87,54 @@ function slug(v) {
   return text(v).toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 }
 function normalize(obj) {
-  const name = first(obj, ['name','title','pet_name','puppy_name','display_name']);
-  const breed = first(obj, ['breed','breed_name','breedName','type']);
-  const sex = first(obj, ['sex','gender']);
-  const sourceUrl = urlFrom(obj);
+  const name = first(obj, ['name','title','pet_name','puppy_name','display_name','PetName']);
+  const breed = first(obj, ['breed','breed_name','breedName','type','BreedName']);
+  const sex = first(obj, ['sex','gender','Gender']);
+  const sourceUrl = urlFrom(obj) || SOURCE;
   const image = imageFrom(obj);
-  const externalId = first(obj, ['id','ID','pet_id','puppy_id','sku','stock_number','stockNumber','reference','reference_number','ref']);
-  const birthDate = first(obj, ['birth_date','birthDate','birthday','date_of_birth','dob','born','born_on']);
+
+  const petId = first(obj, ['PetId','pet_id','puppy_id','id','ID']);
+  const referenceNumber = first(obj, ['ReferenceNumber','reference_number','reference','ref','sku','stock_number','stockNumber']);
+  const externalId = referenceNumber || petId;
+  const birthDate = first(obj, ['BirthDate','birth_date','birthDate','birthday','date_of_birth','dob','born','born_on']);
+  const age = first(obj, ['Age','age']);
   const readyDate = first(obj, ['ready_date','readyDate','available_date','availableDate','available_on','ready']);
-  const price = first(obj, ['price','sale_price','salePrice','amount']);
-  const color = first(obj, ['color','coat_color','coatColor']);
-  const weight = first(obj, ['weight','current_weight','currentWeight','adult_weight','adultWeight']);
-  const generation = first(obj, ['generation','breed_generation','breedGeneration']);
-  const key = externalId || sourceUrl || [name, breed, sex, birthDate].filter(Boolean).join('|');
-  if (!key || (!name && !breed)) return null;
+  const price = first(obj, ['price','sale_price','salePrice','amount','Price','SalePrice']);
+  const color = first(obj, ['Coloring','color','coat_color','coatColor']);
+  const weight = first(obj, ['Weight','weight','current_weight','currentWeight','adult_weight','adultWeight']);
+  const generation = first(obj, ['generation','breed_generation','breedGeneration','Generation']);
+  const rawStatus = first(obj, ['Status','status']).toLowerCase();
+  const orgName = first(obj, ['OrgName','org_name','organization']);
+  const petType = first(obj, ['PetType','pet_type']);
+
+  // The public partner response can contain multiple record types. Only publish
+  // Noble Paw dog records with enough identity to be confidently a puppy listing.
+  if (orgName && orgName.toLowerCase() !== 'the noble paw') return null;
+  if (petType && petType.toLowerCase() !== 'dog') return null;
+  if (rawStatus && rawStatus !== 'available') return null;
+
+  const key = petId || referenceNumber || sourceUrl || [name, breed, sex, birthDate].filter(Boolean).join('|');
+  if (!key || !name || !breed) return null;
+
   return {
     key: String(key),
+    source_pet_id: petId || null,
     external_id: externalId || null,
     name: name || null,
     breed: breed || null,
     breed_slug: breed ? slug(breed) : null,
     sex: sex || null,
     birth_date: birthDate || null,
+    age: age || null,
     ready_date: readyDate || null,
     price: price || null,
     color: color || null,
     weight: weight || null,
     generation: generation || null,
     image_url: image || null,
-    source_url: sourceUrl || null,
+    source_url: sourceUrl || SOURCE,
     physical_location: 'Stuart, FL',
+    source_status: rawStatus || 'available',
     status: 'available',
     last_seen_at: now,
     missing_successful_runs: 0
@@ -150,6 +176,7 @@ function writePuppyPages(puppies) {
     const facts = [
       p.external_id ? 'Reference #' + p.external_id : null,
       p.birth_date ? 'Born ' + p.birth_date : null,
+      p.age || null,
       p.ready_date ? 'Ready ' + p.ready_date : null,
       p.generation || null,
       p.color ? 'Color: ' + p.color : null,
@@ -219,7 +246,7 @@ try {
       jsonPayloads.push({
         url,
         parsed,
-        body_sample: body.slice(0, 24000),
+        body_sample: '',
         top_keys: parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? Object.keys(parsed).slice(0, 80) : []
       });
     } catch {}
@@ -331,7 +358,7 @@ try {
     json_response_summaries: jsonPayloads.map(x => ({
       url: x.url,
       top_keys: x.top_keys,
-      body_sample: x.body_sample
+      sample_type: Array.isArray(x.parsed) ? 'array' : typeof x.parsed
     })),
     dom_candidates_seen: domCandidates.length,
     iframe_candidates: iframeCandidates,
