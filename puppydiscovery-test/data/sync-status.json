@@ -1,8 +1,8 @@
 {
-  "last_run": null,
+  "last_run": "2026-10-02T21:01:49.484Z",
   "last_successful_run": null,
-  "status": "not_run",
+  "status": "error",
   "records_seen": 0,
   "records_published": 0,
-  "message": "Inventory discovery job has not run yet."
+  "message": "Error: Source returned HTTP 403\n    at file:///home/runner/work/jscott1987.github.io/jscott1987.github.io/puppydiscovery-test/automation/sync-inventory.mjs:131:52"
 }
