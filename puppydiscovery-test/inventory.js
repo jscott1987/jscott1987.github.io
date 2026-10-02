@@ -1,9 +1,11 @@
 (async function(){
-  const root=document.documentElement;
-  const base=root.dataset.base || (location.pathname.includes('/breeds/') || location.pathname.includes('/locations/') || location.pathname.includes('/puppies/') ? '../../' : './');
+  const script=document.currentScript;
+  const rootUrl=new URL('./',script.src);
+  const rootPath=rootUrl.pathname;
+  const asset=(p)=>new URL(p,rootUrl).pathname;
   let data;
   try{
-    const res=await fetch(base+'data/puppies.json',{cache:'no-store'});
+    const res=await fetch(asset('data/puppies.json'),{cache:'no-store'});
     if(!res.ok) throw new Error('inventory '+res.status);
     data=await res.json();
   }catch(e){
@@ -30,7 +32,7 @@
     const limit=Number(el.dataset.limit||0); if(limit>0) items=items.slice(0,limit);
     if(!items.length){
       const label=breed?breed.replace(/-/g,' '):'puppies';
-      el.innerHTML='<div class="availability-box"><h2>No verified '+esc(label)+' listings are published right now.</h2><p>Inventory changes frequently. Start a request or call The Noble Paw for the latest availability.</p><div class="inline-actions"><a class="btn" href="'+base+'find-my-puppy/'+(breed?'?breed='+encodeURIComponent(label):'')+'">Find My Puppy</a><a class="btn secondary" href="tel:7723480800">Call 772-348-0800</a></div></div>';
+      el.innerHTML='<div class="availability-box"><h2>No verified '+esc(label)+' listings are published right now.</h2><p>Inventory changes frequently. Start a request or call The Noble Paw for the latest availability.</p><div class="inline-actions"><a class="btn" href="'+asset('find-my-puppy/')+(breed?'?breed='+encodeURIComponent(label):'')+'">Find My Puppy</a><a class="btn secondary" href="tel:7723480800">Call 772-348-0800</a></div></div>';
       return;
     }
     el.innerHTML='<div class="puppy-grid">'+items.map(card).join('')+'</div><div class="note">Last successful inventory sync: '+esc(data.last_successful_sync||'pending')+'</div>';
