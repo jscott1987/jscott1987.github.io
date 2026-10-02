@@ -1,25 +1,14 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PuppyDiscovery Operations</title><meta name="robots" content="noindex,nofollow"><link rel="stylesheet" href="../styles.css"></head><body>
-<div class="topbar"><div class="shell"><span>PuppyDiscovery Operations · staging</span><span>Private authentication must be enabled before production.</span></div></div>
-<header class="header"><div class="shell header-inner"><a class="wordmark" href="../">Puppy<span>Discovery</span></a><nav class="nav"><a href="#overview">Overview</a><a href="#inventory">Inventory</a><a href="#breeds">Breeds</a><a href="#acquisition">Acquisition</a></nav><div class="header-actions"><a class="btn secondary" href="../">Public Site</a></div></div></header>
+<section class="ops-auth" data-ops-auth><form class="ops-auth-card" data-ops-login><div class="eyebrow">PuppyDiscovery</div><h1>Operations</h1><p>Enter the private Operations token. The token is validated server-side and is never embedded in the site source.</p><input data-ops-token type="password" autocomplete="current-password" placeholder="Operations token" required><button class="btn" type="submit">Open Operations</button><div class="ops-error" data-ops-error></div></form></section>
+<div class="ops-hidden" data-ops-app>
+<div class="topbar"><div class="shell"><span>PuppyDiscovery Operations</span><span>Verified operational data only</span></div></div>
+<header class="header"><div class="shell header-inner"><a class="wordmark" href="../">Puppy<span>Discovery</span></a><nav class="nav"><a href="#overview">Overview</a><a href="#inventory">Inventory</a><a href="#breeds">Breeds</a><a href="#leads">Leads</a></nav><div class="header-actions"><a class="btn secondary" href="../">Public Site</a></div></div></header>
 <main class="ops-shell"><div class="shell">
-<section id="overview"><div class="inventory-head"><div><div class="eyebrow">Operations</div><h2>System overview</h2></div><p>Only verified data is shown. Unconnected metrics remain empty rather than being estimated.</p></div>
-<div class="ops-grid">
-<div class="ops-card"><span>Available puppies</span><strong data-kpi="available">0</strong></div>
-<div class="ops-card"><span>Active breeds</span><strong data-kpi="breeds">0</strong></div>
-<div class="ops-card"><span>Unavailable records</span><strong data-kpi="unavailable">0</strong></div>
-<div class="ops-card"><span>Inventory sync</span><strong data-kpi="sync">unknown</strong></div>
-</div>
-<div class="availability-box"><h2>Inventory sync health</h2><p data-sync-detail>Loading sync state…</p></div></section>
-
-<section id="inventory" class="section"><div class="section-head"><div><div class="eyebrow">Inventory</div><h2>Puppy records</h2></div><p>Live state from <code>data/puppies.json</code>.</p></div>
-<table class="ops-table"><thead><tr><th>Puppy</th><th>Breed</th><th>Sex</th><th>Status</th><th>Last observed</th><th>Source</th></tr></thead><tbody data-puppy-rows></tbody></table></section>
-
-<section id="breeds" class="section soft"><div class="section-head"><div><div class="eyebrow">Breeds</div><h2>Current inventory mix</h2></div><p>Counts are calculated only from currently available verified records.</p></div><table class="ops-table"><thead><tr><th>Breed</th><th>Available</th></tr></thead><tbody data-breed-rows></tbody></table></section>
-
-<section id="acquisition" class="section"><div class="section-head"><div><div class="eyebrow">Acquisition</div><h2>Collectors still to connect</h2></div><p>No fake acquisition numbers are shown.</p></div><div class="ops-grid">
-<div class="ops-card"><span>Visitors</span><strong>Not connected</strong></div>
-<div class="ops-card"><span>Phone clicks</span><strong>Not connected</strong></div>
-<div class="ops-card"><span>Lead forms</span><strong>Not connected</strong></div>
-<div class="ops-card"><span>Outbound Noble clicks</span><strong>Not connected</strong></div>
-</div></section>
-</div></main><script src="operations.js"></script></body></html>
+<section id="overview"><div class="inventory-head"><div><div class="eyebrow">Operations</div><h2>System overview</h2></div><p>30-day acquisition counts come from first-party events and stored leads. Inventory comes from the verified sync state.</p></div>
+<div class="ops-grid"><div class="ops-card"><span>Available puppies</span><strong data-kpi="available">0</strong></div><div class="ops-card"><span>Active breeds</span><strong data-kpi="breeds">0</strong></div><div class="ops-card"><span>Unavailable records</span><strong data-kpi="unavailable">0</strong></div><div class="ops-card"><span>Inventory sync</span><strong data-kpi="sync">unknown</strong></div></div>
+<div class="availability-box"><h2>Inventory sync health</h2><p data-sync-detail>Loading…</p></div>
+<div class="ops-grid"><div class="ops-card"><span>Page views · 30d</span><strong data-kpi="visitors">0</strong></div><div class="ops-card"><span>Phone clicks · 30d</span><strong data-kpi="phone">0</strong></div><div class="ops-card"><span>Leads · 30d</span><strong data-kpi="forms">0</strong></div><div class="ops-card"><span>Noble Paw clicks · 30d</span><strong data-kpi="outbound">0</strong></div></div></section>
+<section id="inventory" class="section"><div class="section-head"><div><div class="eyebrow">Inventory</div><h2>Puppy records</h2></div><p>Last verified inventory state.</p></div><table class="ops-table"><thead><tr><th>Puppy</th><th>Breed</th><th>Sex</th><th>Status</th><th>Last observed</th><th>Source</th></tr></thead><tbody data-puppy-rows></tbody></table></section>
+<section id="breeds" class="section soft"><div class="section-head"><div><div class="eyebrow">Breeds</div><h2>Current inventory mix</h2></div></div><table class="ops-table"><thead><tr><th>Breed</th><th>Available</th></tr></thead><tbody data-breed-rows></tbody></table></section>
+<section id="leads" class="section"><div class="section-head"><div><div class="eyebrow">Leads</div><h2>Recent puppy requests</h2></div><p>Most recent 50 stored leads.</p></div><table class="ops-table ops-leads"><thead><tr><th>Created</th><th>Name</th><th>Contact</th><th>Interest</th><th>Status</th><th>Source</th></tr></thead><tbody data-lead-rows></tbody></table></section>
+</div></main></div><script src="operations.js"></script></body></html>
