@@ -1,7 +1,11 @@
 {
   "source_url": "https://thenoblepaw.com/available-puppies/",
-  "status": "not_analyzed_by_runtime_yet",
-  "parser_policy": "structured data first; conservative link fallback; preserve inventory when extraction returns zero",
-  "iframe_sources": [],
-  "endpoint_hints": []
+  "status": "structured_public_api_resolved",
+  "resolved_at": "2026-10-02T21:34:10.371Z",
+  "public_api": "https://api.kennelmanagement.org/v4/partners/search",
+  "breed_api": "https://api.kennelmanagement.org/v4/partners/breedlist/",
+  "verified_sample_records": 19,
+  "verified_breeds": 14,
+  "parser_policy": "structured public API first; filter to The Noble Paw dogs with available status; preserve prior inventory when extraction returns zero",
+  "safety": "No authentication bypass. No private endpoint. Microchip values are not published."
 }
