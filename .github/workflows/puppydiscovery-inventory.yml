@@ -2,6 +2,10 @@ name: PuppyDiscovery Inventory Sync
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'puppydiscovery-test/automation/**'
+      - '.github/workflows/puppydiscovery-inventory.yml'
   schedule:
     - cron: '15 12 * * *'
 
