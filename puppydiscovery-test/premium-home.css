@@ -115,3 +115,44 @@ button,input{font:inherit}
   .lower-strip-inner{grid-template-columns:1fr}.lower-item{border-right:0;border-bottom:1px solid #e1e4e9}.lower-item:last-child{border-bottom:0}
   .footer-inner{flex-direction:column}
 }
+
+
+/* 2026-10-02 tightened homepage pass */
+.brand-top-inner{height:78px}
+.logo{font-size:30px}
+.logo-sub{margin-top:2px}
+.brand-right{gap:28px}
+.main-nav-inner{height:52px;gap:24px}
+.menu-pill{padding:9px 15px}
+.main-nav a:not(.menu-pill){font-size:12px}
+.hero{min-height:360px}
+.hero-inner{padding:54px 0 50px}
+.hero-copy{width:min(575px,56%)}
+.hero-kicker{margin-bottom:10px;font-size:12px}
+.hero h1{font-size:49px;line-height:1.04}
+.hero p{margin-top:13px;font-size:15px;line-height:1.5;max-width:520px}
+.hero-actions{margin-top:22px}
+.inventory-wrap{padding:18px 0 58px}
+.inventory-title{font-size:19px;margin-bottom:9px}
+.search-shell{height:48px}
+.search-icon{font-size:16px}
+.search-shell input{font-size:13px}
+.filter-row{margin:10px 0 16px;gap:7px}
+.filter-link{padding:7px 11px;font-size:10.5px}
+.puppy-grid{gap:14px}
+.puppy-card{border-radius:8px}
+.puppy-photo{height:285px;width:100%;overflow:hidden;position:relative;background:#eef1f4}
+.puppy-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center center}
+.available{top:10px;left:10px;z-index:2;max-width:calc(100% - 20px);padding:6px 9px}
+.card-body{padding:13px}
+.card-body h3{font-size:18px}
+.card-breed{margin-top:3px}
+.card-meta{margin-top:6px}
+.card-actions{margin-top:11px}
+.card-actions .btn{padding:9px 10px}
+.more-row{margin-top:22px}
+.lower-item{padding:22px 26px}
+.lower-item h2{font-size:17px}
+.lower-item p{line-height:1.5}
+.footer{padding:34px 0}
+@media(max-width:680px){.hero{min-height:455px}.hero-inner{padding:40px 0 205px}.hero h1{font-size:38px}.puppy-photo{height:205px}}
