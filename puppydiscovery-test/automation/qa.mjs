@@ -58,7 +58,7 @@ for(const file of htmlFiles){
 }
 
 const expectedBreeds=[
-'australian-shepherd','beagle','bernedoodle','bichon-frise','boston-terrier','boxer','cane-corso','cavachon','cavalier-king-charles-spaniel','cavapoo','chihuahua','cockapoo','french-bulldog','golden-retriever','goldendoodle','havanese','labrador-retriever','maltese','maltipoo','mini-australian-shepherd','mini-bernedoodle','mini-dachshund','mini-goldendoodle','miniature-poodle','miniature-schnauzer','morkie','pembroke-welsh-corgi','pomeranian','pomsky','pug','sheepadoodle','shiba-inu','shih-tzu','toy-poodle','west-highland-white-terrier','yorkshire-terrier'
+'australian-shepherd','beagle','bernedoodle','bichon-frise','boston-terrier','boxer','cane-corso','cavachon','cavalier-king-charles-spaniel','cavapoo','chihuahua','cockapoo','french-bulldog','golden-retriever','goldendoodle','havanese','labrador-retriever','maltese','maltipoo','mini-australian-shepherd','mini-bernedoodle','mini-dachshund','mini-goldendoodle','miniature-poodle','miniature-schnauzer','morkie','pembroke-welsh-corgi','pomeranian','pomsky','pug','sheepadoodle','shiba-inu','shih-tzu','toy-poodle','west-highland-white-terrier','yorkshire-terrier','dachshund','double-doodle','german-shepherd','yorkiepoo','miniature-australian-shepherd'
 ];
 for(const s of expectedBreeds){
   const p=path.join(ROOT,'breeds',s,'index.html');
