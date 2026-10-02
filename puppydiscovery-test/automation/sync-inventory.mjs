@@ -132,26 +132,26 @@ function writePuppyPages(puppies) {
     fs.mkdirSync(dir, { recursive: true });
     const available = p.status === 'available';
     const title = available
-      ? \`\${p.name || 'Available Puppy'} | \${p.breed || 'Puppy'} in Stuart, FL | PuppyDiscovery\`
-      : \`\${p.name || 'Puppy'} | Availability Update | PuppyDiscovery\`;
+      ? `${p.name || 'Available Puppy'} | ${p.breed || 'Puppy'} in Stuart, FL | PuppyDiscovery`
+      : `${p.name || 'Puppy'} | Availability Update | PuppyDiscovery`;
     const description = available
-      ? \`View \${p.name || 'this puppy'}, a \${p.breed || 'puppy'} currently listed in Stuart, Florida. See details and contact The Noble Paw through PuppyDiscovery.\`
-      : \`\${p.name || 'This puppy'} is no longer shown as currently available. Browse current puppies or request a similar \${p.breed || 'puppy'}.\`;
-    const breedLink = p.breed_slug ? \`../../breeds/\${p.breed_slug}/\` : '../../breeds/';
+      ? `View ${p.name || 'this puppy'}, a ${p.breed || 'puppy'} currently listed in Stuart, Florida. See details and contact The Noble Paw through PuppyDiscovery.`
+      : `${p.name || 'This puppy'} is no longer shown as currently available. Browse current puppies or request a similar ${p.breed || 'puppy'}.`;
+    const breedLink = p.breed_slug ? `../../breeds/${p.breed_slug}/` : '../../breeds/';
     const image = p.image_url
-      ? \`<div class="breed-photo"><img src="\${htmlEscape(p.image_url)}" alt="\${htmlEscape((p.name || 'Puppy') + (p.breed ? ' the ' + p.breed : ''))}"></div>\`
+      ? `<div class="breed-photo"><img src="${htmlEscape(p.image_url)}" alt="${htmlEscape((p.name || 'Puppy') + (p.breed ? ' the ' + p.breed : ''))}"></div>`
       : '';
     const sourceLink = p.source_url
-      ? \`<a class="btn secondary" href="\${htmlEscape(p.source_url)}">Original Listing</a>\`
-      : \`<a class="btn secondary" href="https://thenoblepaw.com/available-puppies/">Noble Paw Inventory</a>\`;
+      ? `<a class="btn secondary" href="${htmlEscape(p.source_url)}">Original Listing</a>`
+      : `<a class="btn secondary" href="https://thenoblepaw.com/available-puppies/">Noble Paw Inventory</a>`;
     const robots = available ? 'index,follow' : 'noindex,follow';
-    const canonical = \`https://puppydiscovery.com/puppies/\${ps}/\`;
-    const body = \`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>\${htmlEscape(title)}</title><meta name="description" content="\${htmlEscape(description)}"><meta name="robots" content="\${robots}"><link rel="canonical" href="\${canonical}"><link rel="stylesheet" href="../../styles.css"><script type="application/ld+json">\${JSON.stringify({"@context":"https://schema.org","@type":"WebPage","name":title,"url":canonical,"description":description})}</script></head><body>
+    const canonical = `https://puppydiscovery.com/puppies/${ps}/`;
+    const body = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${htmlEscape(title)}</title><meta name="description" content="${htmlEscape(description)}"><meta name="robots" content="${robots}"><link rel="canonical" href="${canonical}"><link rel="stylesheet" href="../../styles.css"><script type="application/ld+json">${JSON.stringify({"@context":"https://schema.org","@type":"WebPage","name":title,"url":canonical,"description":description})}</script></head><body>
 <div class="topbar"><div class="shell"><span>Questions about this puppy?</span><a href="tel:7723480800">Call or text 772-348-0800</a></div></div>
 <header class="header"><div class="shell header-inner"><a class="wordmark" href="../../">Puppy<span>Discovery</span></a><nav class="nav"><a href="../">Puppies</a><a href="../../breeds/">Breeds</a><a href="../../find-my-puppy/">Find My Puppy</a><a href="../../locations/">Locations</a><a href="../stuart-fl/">Stuart</a></nav><div class="header-actions"><a class="btn" href="tel:7723480800">Call About This Puppy</a></div></div></header>
-<main><section class="breed-hero"><div class="shell"><div class="breadcrumbs"><a href="../../">Home</a><span>/</span><a href="../">Puppies</a><span>/</span><span>\${htmlEscape(p.name || 'Puppy')}</span></div><div class="breed-hero-grid"><div><div class="eyebrow">\${available ? 'Currently listed' : 'Availability changed'}</div><h1>\${htmlEscape(p.name || 'Available Puppy')}</h1><p>\${htmlEscape(p.breed || 'Puppy')} \${p.sex ? '· ' + htmlEscape(p.sex) : ''} \${p.physical_location ? '· ' + htmlEscape(p.physical_location) : ''}</p><div class="hero-actions">\${available ? '<a class="btn" href="tel:7723480800">Call About This Puppy</a>' : '<a class="btn" href="../../find-my-puppy/">Find a Similar Puppy</a>'}\${sourceLink}</div></div>\${image}</div></div></section>
-<section class="section"><div class="content-shell"><div class="availability-box"><h2>\${available ? 'Current availability' : 'This puppy is no longer shown as available'}</h2><p>\${available ? 'This page is generated from the most recent verified inventory state. Availability can still change quickly, so call before making travel plans.' : 'The inventory sync has stopped showing this puppy as available after repeated successful source checks. You can browse current puppies or request a similar breed.'}</p></div><h2>Breed</h2><p><a class="btn text" href="\${breedLink}">Explore \${htmlEscape(p.breed || 'breed')} information →</a></p><h2>Store information</h2><p>The Noble Paw Pets & Puppies<br>2468 SE Federal Hwy, Stuart, FL 34994<br>772-348-0800</p></div></section></main>
-<footer class="footer"><div class="shell"><div class="footer-main"><div class="footer-brand"><a class="wordmark" href="../../" style="color:#fff">Puppy<span>Discovery</span></a><p>Verified puppy inventory connected to The Noble Paw in Stuart, Florida.</p></div></div></div></footer></body></html>\`;
+<main><section class="breed-hero"><div class="shell"><div class="breadcrumbs"><a href="../../">Home</a><span>/</span><a href="../">Puppies</a><span>/</span><span>${htmlEscape(p.name || 'Puppy')}</span></div><div class="breed-hero-grid"><div><div class="eyebrow">${available ? 'Currently listed' : 'Availability changed'}</div><h1>${htmlEscape(p.name || 'Available Puppy')}</h1><p>${htmlEscape(p.breed || 'Puppy')} ${p.sex ? '· ' + htmlEscape(p.sex) : ''} ${p.physical_location ? '· ' + htmlEscape(p.physical_location) : ''}</p><div class="hero-actions">${available ? '<a class="btn" href="tel:7723480800">Call About This Puppy</a>' : '<a class="btn" href="../../find-my-puppy/">Find a Similar Puppy</a>'}${sourceLink}</div></div>${image}</div></div></section>
+<section class="section"><div class="content-shell"><div class="availability-box"><h2>${available ? 'Current availability' : 'This puppy is no longer shown as available'}</h2><p>${available ? 'This page is generated from the most recent verified inventory state. Availability can still change quickly, so call before making travel plans.' : 'The inventory sync has stopped showing this puppy as available after repeated successful source checks. You can browse current puppies or request a similar breed.'}</p></div><h2>Breed</h2><p><a class="btn text" href="${breedLink}">Explore ${htmlEscape(p.breed || 'breed')} information →</a></p><h2>Store information</h2><p>The Noble Paw Pets & Puppies<br>2468 SE Federal Hwy, Stuart, FL 34994<br>772-348-0800</p></div></section></main>
+<footer class="footer"><div class="shell"><div class="footer-main"><div class="footer-brand"><a class="wordmark" href="../../" style="color:#fff">Puppy<span>Discovery</span></a><p>Verified puppy inventory connected to The Noble Paw in Stuart, Florida.</p></div></div></div></footer></body></html>`;
     fs.writeFileSync(path.join(dir, 'index.html'), body);
   }
 }
@@ -162,7 +162,7 @@ function updateSitemapWithPuppies(puppies) {
   xml = xml.replace(/\s*<url><loc>https:\/\/puppydiscovery\.com\/puppies\/(?!stuart-fl\/)[^<]+<\/loc>[\s\S]*?<\/url>/g, '');
   const dynamic = puppies.filter(p => p.status === 'available').map(p => {
     const ps = puppySlug(p);
-    return \`  <url><loc>https://puppydiscovery.com/puppies/\${ps}/</loc><lastmod>\${now.slice(0,10)}</lastmod></url>\`;
+    return `  <url><loc>https://puppydiscovery.com/puppies/${ps}/</loc><lastmod>${now.slice(0,10)}</lastmod></url>`;
   }).join('\\n');
   xml = xml.replace('</urlset>', (dynamic ? '\\n' + dynamic + '\\n' : '\\n') + '</urlset>');
   fs.writeFileSync(sitemapPath, xml);
