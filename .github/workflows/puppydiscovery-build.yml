@@ -26,6 +26,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Run SEO and route QA
+        run: node puppydiscovery-test/automation/qa.mjs
+
+      - name: Syntax check production modules
+        run: |
+          node --check puppydiscovery-test/automation/build-production.mjs
+          node --check puppydiscovery-test/site.js
+          node --check puppydiscovery-test/inventory.js
+
       - name: Build production bundle
         run: node puppydiscovery-test/automation/build-production.mjs
 
