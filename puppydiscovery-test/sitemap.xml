@@ -2,9 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://puppydiscovery.com/</loc><lastmod>2026-10-02</lastmod></url>
   <url><loc>https://puppydiscovery.com/puppies/</loc><lastmod>2026-10-02</lastmod></url>
+  <url><loc>https://puppydiscovery.com/puppies/stuart-fl/</loc><lastmod>2026-10-02</lastmod></url>
   <url><loc>https://puppydiscovery.com/breeds/</loc><lastmod>2026-10-02</lastmod></url>
-  <url><loc>https://puppydiscovery.com/locations/</loc><lastmod>2026-10-02</lastmod></url>
   <url><loc>https://puppydiscovery.com/find-my-puppy/</loc><lastmod>2026-10-02</lastmod></url>
+  <url><loc>https://puppydiscovery.com/locations/</loc><lastmod>2026-10-02</lastmod></url>
   <url><loc>https://puppydiscovery.com/breeds/australian-shepherd/</loc><lastmod>2026-10-02</lastmod></url>
   <url><loc>https://puppydiscovery.com/breeds/beagle/</loc><lastmod>2026-10-02</lastmod></url>
   <url><loc>https://puppydiscovery.com/breeds/bernedoodle/</loc><lastmod>2026-10-02</lastmod></url>
@@ -41,10 +42,9 @@
   <url><loc>https://puppydiscovery.com/breeds/toy-poodle/</loc><lastmod>2026-10-02</lastmod></url>
   <url><loc>https://puppydiscovery.com/breeds/west-highland-white-terrier/</loc><lastmod>2026-10-02</lastmod></url>
   <url><loc>https://puppydiscovery.com/breeds/yorkshire-terrier/</loc><lastmod>2026-10-02</lastmod></url>
-  <url><loc>https://puppydiscovery.com/puppies/stuart-fl/</loc><lastmod>2026-10-02</lastmod></url>
-  <url><loc>https://puppydiscovery.com/puppies/palm-city-fl/</loc><lastmod>2026-10-02</lastmod></url>
-  <url><loc>https://puppydiscovery.com/puppies/jensen-beach-fl/</loc><lastmod>2026-10-02</lastmod></url>
-  <url><loc>https://puppydiscovery.com/puppies/port-st-lucie-fl/</loc><lastmod>2026-10-02</lastmod></url>
-  <url><loc>https://puppydiscovery.com/puppies/hobe-sound-fl/</loc><lastmod>2026-10-02</lastmod></url>
-  <url><loc>https://puppydiscovery.com/puppies/jupiter-fl/</loc><lastmod>2026-10-02</lastmod></url>
+  <url><loc>https://puppydiscovery.com/locations/palm-city-fl/</loc><lastmod>2026-10-02</lastmod></url>
+  <url><loc>https://puppydiscovery.com/locations/jensen-beach-fl/</loc><lastmod>2026-10-02</lastmod></url>
+  <url><loc>https://puppydiscovery.com/locations/port-st-lucie-fl/</loc><lastmod>2026-10-02</lastmod></url>
+  <url><loc>https://puppydiscovery.com/locations/hobe-sound-fl/</loc><lastmod>2026-10-02</lastmod></url>
+  <url><loc>https://puppydiscovery.com/locations/jupiter-fl/</loc><lastmod>2026-10-02</lastmod></url>
 </urlset>
