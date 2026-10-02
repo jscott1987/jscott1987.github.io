@@ -161,10 +161,23 @@ const domCandidates = [];
 let browser;
 
 try {
-  browser = await chromium.launch({ headless: true });
-  const page = await browser.newPage({
+  browser = await chromium.launch({
+    headless: true,
+    args: ['--disable-blink-features=AutomationControlled']
+  });
+  const context = await browser.newContext({
     viewport: { width: 1440, height: 1000 },
-    userAgent: 'Mozilla/5.0 (compatible; PuppyDiscoveryInventory/1.0; +https://puppydiscovery.com/)'
+    locale: 'en-US',
+    timezoneId: 'America/New_York',
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36',
+    extraHTTPHeaders: {
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Upgrade-Insecure-Requests': '1'
+    }
+  });
+  const page = await context.newPage();
+  await page.addInitScript(() => {
+    try { Object.defineProperty(navigator, 'webdriver', { get: () => undefined }); } catch {}
   });
 
   page.on('response', async response => {
@@ -180,10 +193,41 @@ try {
     } catch {}
   });
 
-  const response = await page.goto(SOURCE, { waitUntil: 'domcontentloaded', timeout: 60000 });
-  if (!response || response.status() >= 400) throw new Error('Source returned HTTP ' + (response?.status() ?? 'unknown'));
+  async function openInventory(url) {
+    const response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    const initialStatus = response?.status() ?? 0;
 
-  await page.waitForTimeout(4500);
+    // Some public sites return an initial challenge response before the browser
+    // is allowed through. Do not fail on that first status alone.
+    await page.waitForTimeout(initialStatus >= 400 ? 12000 : 4500);
+
+    const state = await page.evaluate(() => ({
+      title: document.title || '',
+      text: (document.body?.innerText || '').slice(0, 5000),
+      href: location.href
+    }));
+
+    const looksBlocked = /access denied|forbidden|attention required|checking your browser|verify you are human|just a moment|cloudflare/i.test(
+      state.title + ' ' + state.text
+    );
+    const looksLikeInventoryPage = /available puppies|available pets|find your pet|pure bred puppies/i.test(state.text);
+
+    return { initialStatus, state, looksBlocked, looksLikeInventoryPage };
+  }
+
+  let openResult = await openInventory(SOURCE);
+  if (openResult.looksBlocked || !openResult.looksLikeInventoryPage) {
+    const wwwSource = 'https://www.thenoblepaw.com/available-puppies/';
+    openResult = await openInventory(wwwSource);
+  }
+  if (openResult.looksBlocked || !openResult.looksLikeInventoryPage) {
+    throw new Error(
+      'Inventory page remained unavailable after rendered-browser challenge handling. ' +
+      'Initial HTTP status: ' + openResult.initialStatus + '; title: ' + openResult.state.title
+    );
+  }
+
+  await page.waitForTimeout(2500);
   await page.evaluate(async () => {
     for (let y = 0; y < document.body.scrollHeight; y += 700) {
       window.scrollTo(0, y);
