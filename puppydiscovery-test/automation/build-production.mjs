@@ -21,7 +21,7 @@ function copy(src,dst){
     let html=buf.toString('utf8');
     const isOperations = src.includes(path.sep + 'operations' + path.sep);
     if(!isOperations) html=html.replace(/<meta name="robots" content="noindex,nofollow">/g,'');
-    if(!html.includes('site.js')){
+    if(!isOperations && !html.includes('site.js')){
       const rel=path.relative(path.dirname(src),ROOT).split(path.sep).filter(Boolean);
       const prefix=rel.length? '../'.repeat(rel.length):'./';
       html=html.replace('</body>',`<script src="${prefix}site.js"></script></body>`);
