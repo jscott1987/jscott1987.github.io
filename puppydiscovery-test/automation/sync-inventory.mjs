@@ -163,16 +163,26 @@ function writePuppyPages(puppies) {
   }
 }
 function updateSitemapWithPuppies(puppies) {
-  const sitemapPath = path.join(ROOT, 'sitemap.xml');
-  if (!fs.existsSync(sitemapPath)) return;
-  let xml = fs.readFileSync(sitemapPath, 'utf8');
-  xml = xml.replace(/\s*<url><loc>https:\/\/puppydiscovery\.com\/puppies\/(?!stuart-fl\/)[^<]+<\/loc>[\s\S]*?<\/url>/g, '');
-  const dynamic = puppies.filter(p => p.status === 'available').map(p => {
+  const mainPath = path.join(ROOT, 'sitemap.xml');
+  const puppyPath = path.join(ROOT, 'sitemap-puppies.xml');
+  const active = puppies.filter(p => p.status === 'available');
+
+  if (fs.existsSync(mainPath)) {
+    let xml = fs.readFileSync(mainPath, 'utf8');
+    xml = xml.replace(/\s*<url><loc>https:\/\/puppydiscovery\.com\/puppies\/(?!stuart-fl\/)[^<]+<\/loc>[\s\S]*?<\/url>/g, '');
+    fs.writeFileSync(mainPath, xml);
+  }
+
+  const rows = active.map(p => {
     const ps = puppySlug(p);
     return `  <url><loc>https://puppydiscovery.com/puppies/${ps}/</loc><lastmod>${now.slice(0,10)}</lastmod></url>`;
-  }).join('\\n');
-  xml = xml.replace('</urlset>', (dynamic ? '\\n' + dynamic + '\\n' : '\\n') + '</urlset>');
-  fs.writeFileSync(sitemapPath, xml);
+  }).join('\n');
+
+  const puppyXml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    (rows ? rows + '\n' : '') +
+    '</urlset>\n';
+  fs.writeFileSync(puppyPath, puppyXml);
 }
 
 const jsonPayloads = [];
