@@ -21,3 +21,50 @@
 .footer{background:#142238;color:#fff;padding:40px 0 24px}.footer-main{display:grid;grid-template-columns:1fr 1.4fr;gap:70px;padding-bottom:34px}.footer-brand .wordmark{color:#fff}.footer-brand p{margin:10px 0 0;max-width:330px;color:#acb7c5;font-size:11px;line-height:1.6}.footer-links{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.footer-col{display:flex;flex-direction:column;gap:8px}.footer-col strong{font-size:10px;font-weight:500;color:#8796a9;margin-bottom:3px}.footer-col a{font-size:11.5px;color:#d7dee8}
 @media(max-width:1000px){.header-inner{grid-template-columns:1fr auto}.nav{display:none}.premium-hero-grid{grid-template-columns:1fr;gap:25px}.hero-panel{max-width:680px}.puppy-grid{grid-template-columns:repeat(2,1fr)}.find-layout,.local-grid{grid-template-columns:1fr}.local-aside{position:static}.visit-split{grid-template-columns:1fr}.directory-grid{grid-template-columns:repeat(2,1fr)}.footer-main{grid-template-columns:1fr;gap:32px}}
 @media(max-width:650px){.shell{width:calc(100% - 28px)}.topbar .shell{height:auto;padding:8px 0}.header-inner{height:64px}.wordmark{font-size:24px}.premium-hero-grid{padding:34px 0}.premium-hero h1{font-size:37px}.market-section{padding:36px 0 50px}.section-head{display:block}.section-head p{margin-top:8px}.puppy-grid{grid-template-columns:1fr 1fr;gap:10px}.puppy-image{height:205px}.card-body{padding:10px}.card-body h3{font-size:15px}.card-actions{display:block}.phone-link{display:none}.info-grid{grid-template-columns:1fr}.info-card{padding:16px 0;border-right:0;border-top:1px solid #dfe4e9}.info-card:first-child{border-top:0}.feature-grid{grid-template-columns:1fr}.find-grid{grid-template-columns:1fr}.find-full{grid-column:auto}.visit-copy{padding:24px}.visit-photo{min-height:250px}.directory-grid{grid-template-columns:1fr}.footer-links{grid-template-columns:1fr 1fr}.searchbar{grid-template-columns:45px 1fr}.searchbar span{display:none}}
+
+
+/* Breed marketplace pages */
+.breed-hero{background:#f6f8fb;border-bottom:1px solid var(--line)}
+.breed-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;padding:46px 0}
+.breed-hero h1{margin:8px 0 12px;font-size:48px;line-height:1.03;font-weight:500;letter-spacing:-.042em;color:var(--navy)}
+.breed-hero p{margin:0;max-width:650px;font-size:14px;line-height:1.7;color:var(--muted)}
+.breed-visual{min-height:360px;border-radius:10px;overflow:hidden;background:#e9edf2;position:relative}
+.breed-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.breed-visual-overlay{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.94);border-radius:6px;padding:9px 11px;font-size:10px;color:#4a5668}
+.breed-facts{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;margin-top:24px}
+.breed-fact{padding:14px 15px;border-right:1px solid var(--line)}
+.breed-fact:last-child{border-right:0}
+.breed-fact span{display:block;font-size:9.5px;color:#8b94a0}
+.breed-fact strong{display:block;margin-top:5px;font-size:12.5px;font-weight:500;color:var(--navy)}
+.breed-live{padding:44px 0 50px}
+.breed-live.soft{background:var(--soft);border-bottom:1px solid #eceff2}
+.breed-content{padding:54px 0}
+.breed-content-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.breed-story{border-top:1px solid var(--line);padding:19px 2px 6px}
+.breed-story h2{margin:0 0 8px;font-size:20px;font-weight:500;letter-spacing:-.02em;color:var(--navy)}
+.breed-story p,.breed-story li{margin:0;font-size:12.5px;line-height:1.72;color:#596372}
+.breed-story ul{padding-left:18px;margin:7px 0 0}
+.breed-faq{background:var(--soft);border-top:1px solid #eceff2;border-bottom:1px solid #eceff2;padding:48px 0}
+.breed-faq-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.breed-faq-item{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px}
+.breed-faq-item h3{margin:0 0 7px;font-size:15px;font-weight:500;color:var(--navy)}
+.breed-faq-item p{margin:0;font-size:11.8px;line-height:1.65;color:var(--muted)}
+.related-breeds{padding:44px 0 58px}
+.related-breed-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.related-breed{border:1px solid var(--line);border-radius:7px;background:#fff;padding:15px;font-size:12px;font-weight:500;color:var(--navy)}
+.related-breed span{float:right;color:var(--blue)}
+.breed-identity{min-height:360px;border:1px solid #dde2e8;border-radius:10px;background:linear-gradient(145deg,#fff,#edf2f8);padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+.breed-identity .mark{font-size:72px;line-height:1;font-weight:500;letter-spacing:-.07em;color:#d3ddec}
+.breed-identity h2{margin:0;font-size:25px;font-weight:500;color:var(--navy)}
+.breed-identity p{margin:7px 0 0;font-size:12px;line-height:1.6;color:var(--muted)}
+.breed-directory-tools{display:flex;gap:10px;align-items:center;margin-bottom:18px}
+.breed-directory-tools input{flex:1;border:1px solid #d8dee6;border-radius:7px;padding:11px 13px;outline:0}
+.breed-featured-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:34px}
+.breed-featured{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+.breed-featured-photo{height:205px;background:#eef1f4}
+.breed-featured-photo img{width:100%;height:100%;object-fit:cover}
+.breed-featured div:last-child{padding:12px 13px}
+.breed-featured strong{display:block;font-size:14px;font-weight:500;color:var(--navy)}
+.breed-featured span{display:block;margin-top:4px;font-size:10px;color:#858e9a}
+@media(max-width:900px){.breed-hero-grid{grid-template-columns:1fr}.breed-visual,.breed-identity{min-height:320px}.breed-featured-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.breed-hero-grid{padding:32px 0}.breed-hero h1{font-size:38px}.breed-facts{grid-template-columns:1fr 1fr}.breed-fact:nth-child(2){border-right:0}.breed-fact:nth-child(n+3){border-top:1px solid var(--line)}.breed-content-grid,.breed-faq-list{grid-template-columns:1fr}.related-breed-grid{grid-template-columns:1fr 1fr}.breed-featured-grid{gap:9px}.breed-featured-photo{height:170px}}
