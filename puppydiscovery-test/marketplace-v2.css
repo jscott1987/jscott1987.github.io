@@ -75,3 +75,32 @@
 .guide-layout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:55px;align-items:start;padding:52px 0 68px}.guide-copy h2{margin:32px 0 9px;font-size:24px;font-weight:500;letter-spacing:-.025em;color:var(--navy)}.guide-copy h2:first-child{margin-top:0}.guide-copy h3{margin:22px 0 7px;font-size:16px;font-weight:500;color:var(--navy)}.guide-copy p,.guide-copy li{font-size:13px;line-height:1.75;color:#586372}.guide-copy ul{padding-left:18px}.guide-aside{position:sticky;top:96px;border:1px solid var(--line);border-radius:9px;background:#fff;padding:19px}.guide-aside h3{margin:0 0 8px;font-size:17px;font-weight:500;color:var(--navy)}.guide-aside p{margin:0;font-size:11.5px;line-height:1.6;color:var(--muted)}.guide-aside a{width:100%;margin-top:11px}.guide-hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.guide-hub-card{border:1px solid var(--line);border-radius:9px;padding:20px;background:#fff}.guide-hub-card span{font-size:10px;color:#8b94a0}.guide-hub-card h2{margin:7px 0 7px;font-size:18px;font-weight:500;color:var(--navy)}.guide-hub-card p{margin:0;font-size:11.7px;line-height:1.6;color:var(--muted)}.guide-hub-card a{display:inline-block;margin-top:12px;color:var(--blue);font-size:11.5px;font-weight:500}
 @media(max-width:900px){.guide-layout{grid-template-columns:1fr}.guide-aside{position:static;max-width:620px}.guide-hub-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.guide-hero .shell{padding:32px 0}.guide-hero h1{font-size:37px}.guide-layout{padding:36px 0 50px}}
+
+
+/* 2026-10-03 premium retail system */
+:root{--ink:#111a29;--muted:#6c7685;--line:#e2e6eb;--soft:#f5f7f9;--navy:#10223d;--blue:#2f64d6;--blue2:#2856b9;--max:1320px}
+body{background:#fff;color:var(--ink)}
+.shell{width:min(calc(100% - 64px),var(--max))}
+.topbar{background:var(--navy);color:#fff;border:0}.topbar .shell{height:38px}.topbar span,.topbar a{font-size:10px;color:#b8c4d4}.topbar a{color:#fff}
+.header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:none}.header-inner{height:78px;grid-template-columns:1fr auto 1fr}
+.wordmark{font-size:29px;letter-spacing:-.055em}.nav{gap:28px}.nav a{font-size:12px}.header-actions .btn{border-radius:0;background:transparent;color:var(--navy);border-color:var(--navy);padding:10px 15px}
+.btn,.btn.secondary{border-radius:0}
+.premium-hero,.breed-hero{background:#fff;border-bottom:1px solid var(--line)}.premium-hero-grid,.breed-hero-grid{padding:52px 0;gap:60px}
+.premium-hero h1,.breed-hero h1{font-size:50px;line-height:1.02;letter-spacing:-.05em;max-width:720px}.premium-hero p,.breed-hero p{font-size:14px;line-height:1.7;max-width:680px}
+.hero-panel{border:0;border-radius:0;background:var(--navy);color:#fff;padding:28px}.hero-panel .label{color:#9dafc7}.hero-panel h2{color:#fff;font-size:24px;line-height:1.1}.hero-panel p{color:#c6d1df}
+.hero-panel-list{border-top:1px solid rgba(255,255,255,.18)}.hero-panel-list div{border-bottom:1px solid rgba(255,255,255,.16);color:#9dafc7}.hero-panel-list strong{color:#fff}.hero-panel .btn.secondary{background:#fff;border-color:#fff;color:var(--navy)}
+.market-section{padding:58px 0 72px}.section-head{margin-bottom:25px}.section-head h2{font-size:31px;line-height:1.1;letter-spacing:-.035em}.section-head p{font-size:12px}
+.searchbar{height:46px;border-radius:0;box-shadow:none}
+.puppy-grid{gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}.puppy-card{border-radius:0;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.puppy-image{height:300px}.card-body{padding:14px 14px 16px}.card-body h3{font-size:17px}.card-actions .btn,.phone-link{border-radius:0}
+.info-band{padding:58px 0;background:var(--soft)}
+.feature-grid{gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}.feature-card{border-radius:0;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px}
+.find-form{border-radius:0;padding:26px}.find-grid input,.find-grid select,.find-grid textarea{border-radius:0}
+.visit-split{border-radius:0}.visit-copy{padding:44px}.visit-copy h2{font-size:32px}
+.local-aside,.delivery-box{border-radius:0}
+.directory-grid{gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}.directory-card{border-radius:0;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px;min-height:132px}
+.breed-visual,.breed-identity,.breed-facts{border-radius:0}.breed-live{padding:50px 0 58px}.breed-content{padding:60px 0}
+.breed-content-grid{gap:0;border-top:1px solid var(--line)}.breed-story{padding:22px 28px 22px 0;border-top:0;border-bottom:1px solid var(--line)}.breed-story:nth-child(odd){border-right:1px solid var(--line);margin-right:28px}
+.breed-faq{padding:54px 0}.breed-faq-list{gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}.breed-faq-item{border-radius:0;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px}
+.related-breed-grid,.breed-featured-grid{gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}.related-breed,.breed-featured{border-radius:0;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.footer{background:#0e1a2d;padding:48px 0}.footer-main{gap:70px}.footer-col strong{color:#7f8ca0}.footer-col a{color:#d5dde8}
+@media(max-width:650px){.shell{width:calc(100% - 28px)}.premium-hero h1,.breed-hero h1{font-size:39px}.premium-hero-grid,.breed-hero-grid{padding:36px 0}.puppy-grid{grid-template-columns:1fr 1fr}.puppy-image{height:215px}.breed-content-grid{grid-template-columns:1fr}.breed-story:nth-child(odd){border-right:0;margin-right:0}}
