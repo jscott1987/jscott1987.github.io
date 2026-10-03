@@ -44,8 +44,31 @@
       }
     }catch{queue(evt);}
   }
+  async function loadAnalyticsConfig(){
+    try{
+      const r=await fetch('/api/config',{cache:'no-store'});
+      if(!r.ok) return;
+      const cfg=await r.json();
+      const id=cfg?.ga4_measurement_id;
+      if(!id||!/^G-[A-Z0-9]+$/i.test(id)||document.querySelector('script[data-pd-ga4]')) return;
+      const s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(id);
+      s.dataset.pdGa4='1';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      window.gtag=function(){window.dataLayer.push(arguments);};
+      window.gtag('js',new Date());
+      window.gtag('config',id,{send_page_view:false});
+    }catch{}
+  }
   window.PuppyDiscoveryAnalytics={track:send,anonymousId:anonId};
-  send('page_view',{});
+  loadAnalyticsConfig().finally(()=>{
+    send('page_view',{});
+    if(/^\/puppies\/[a-z0-9-]+\/$/.test(location.pathname) && !/\/puppies\/stuart-fl\/$/.test(location.pathname)){
+      send('puppy_view',{slug:location.pathname.split('/').filter(Boolean).pop()});
+    }
+  });
   document.addEventListener('click',e=>{
     const a=e.target.closest('a,button'); if(!a) return;
     const href=a.getAttribute('href')||'';
