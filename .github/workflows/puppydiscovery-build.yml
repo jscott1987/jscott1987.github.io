@@ -2,6 +2,9 @@ name: Build PuppyDiscovery Production Branch
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'puppydiscovery-test/.production-release'
 
 permissions:
   contents: write
