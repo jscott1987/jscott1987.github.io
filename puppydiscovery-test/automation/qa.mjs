@@ -69,7 +69,7 @@ for(const s of expectedLocations){
   const p=path.join(ROOT,'locations',s,'index.html');
   if(!fs.existsSync(p)) errors.push('missing location route: '+s);
 }
-for(const p of ['index.html','puppies/index.html','puppies/stuart-fl/index.html','breeds/index.html','locations/index.html','find-my-puppy/index.html','sitemap.xml','production-robots.txt','inventory.js','site.js']){
+for(const p of ['index.html','puppies/index.html','puppies/stuart-fl/index.html','breeds/index.html','locations/index.html','find-my-puppy/index.html','sitemap.xml','sitemap-index.xml','sitemap-puppies.xml','production-robots.txt','inventory.js','site.js','server/api/config.js','server/api/events.js','server/api/leads.js','server/api/ops-summary.js','server/api/_lib/db.js','server/package.json','server/vercel.json','server/migrations/001_init.sql']){
   if(!fs.existsSync(path.join(ROOT,p))) errors.push('missing core artifact: '+p);
 }
 const sitemap=fs.readFileSync(path.join(ROOT,'sitemap.xml'),'utf8');
