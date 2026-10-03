@@ -31,6 +31,11 @@ jobs:
           node --check puppydiscovery-test/automation/build-production.mjs
           node --check puppydiscovery-test/site.js
           node --check puppydiscovery-test/inventory.js
+          node --check puppydiscovery-test/server/api/config.js
+          node --check puppydiscovery-test/server/api/events.js
+          node --check puppydiscovery-test/server/api/leads.js
+          node --check puppydiscovery-test/server/api/ops-summary.js
+          node --check puppydiscovery-test/server/api/_lib/db.js
 
       - name: Build production bundle
         run: node puppydiscovery-test/automation/build-production.mjs
