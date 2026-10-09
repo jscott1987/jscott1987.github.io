@@ -1,3 +1,64 @@
+// ─── OEH lead capture ───────────────────────────────────────────────────────
+// Every customer-facing form posts to the OEH dashboard (stored server-side, then success is shown).
+// Attribution (UTM, click IDs, landing page, referrer) is captured on arrival and sent with the lead.
+// No secrets live here: the endpoint only accepts this site's origin, validates and rate-limits.
+var OEH_LEADS_ENDPOINT = "https://oeh-callrail-tldcrm.vercel.app/api/form-submissions"
+var OEH_ATTR_KEY = "oeh-attr"
+var OEH_ATTR_TTL_MS = 30 * 24 * 60 * 60 * 1000
+var OEH_ATTR_PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid", "keyword", "adgroup", "ad_group"]
+
+function oehReadAttr() {
+  try {
+    var a = JSON.parse(localStorage.getItem(OEH_ATTR_KEY) || "null")
+    if (a && a.ts && Date.now() - a.ts < OEH_ATTR_TTL_MS) return a
+  } catch (err) {}
+  return null
+}
+
+;(function oehCaptureAttribution() {
+  if (window.top !== window) return // the quote iframe never overwrites the visitor's attribution
+  var params = new URLSearchParams(location.search)
+  var hit = {}
+  var tagged = false
+  OEH_ATTR_PARAMS.forEach(function (k) {
+    var v = params.get(k)
+    if (v) { hit[k === "adgroup" ? "ad_group" : k] = v.slice(0, 300); tagged = true }
+  })
+  var current = oehReadAttr()
+  // First visit, or a new tagged (campaign) visit: record this touch. Untagged later pages keep the original.
+  if (!current || tagged) {
+    var external = document.referrer && document.referrer.indexOf(location.origin) !== 0 ? document.referrer : ""
+    var attr = { ts: Date.now(), landing_page: location.href.slice(0, 1000), referrer: external.slice(0, 1000) }
+    for (var k in hit) attr[k] = hit[k]
+    try { localStorage.setItem(OEH_ATTR_KEY, JSON.stringify(attr)) } catch (err) {}
+  }
+  var zip = params.get("zip")
+  if (zip) { try { sessionStorage.setItem("oeh-zip", zip.slice(0, 10)) } catch (err) {} }
+})()
+
+// POST a lead. Resolves { ok, reference } or { ok: false, status, errors }.
+window.OEHSubmit = function (fields) {
+  var attr = oehReadAttr() || {}
+  var top = window.top || window
+  var body = {}
+  for (var k in fields) body[k] = fields[k]
+  ;["landing_page", "referrer", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid", "keyword", "ad_group"].forEach(function (k) {
+    if (attr[k] && !body[k]) body[k] = attr[k]
+  })
+  try { body.page_url = top.location.href.slice(0, 1000) } catch (err) { body.page_url = location.href }
+  return fetch(OEH_LEADS_ENDPOINT, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(body),
+    mode: "cors",
+    credentials: "omit"
+  }).then(function (res) {
+    return res.json().catch(function () { return {} }).then(function (j) {
+      return res.ok && j.ok ? { ok: true, reference: j.reference || "" } : { ok: false, status: res.status, errors: j.errors || {} }
+    })
+  }).catch(function () { return { ok: false, status: 0, errors: {} } })
+}
+
 document.addEventListener("submit", function (e) {
   var form = e.target
   if (!(form instanceof HTMLFormElement)) return
@@ -15,12 +76,42 @@ document.addEventListener("submit", function (e) {
   if (form.querySelector("textarea") && form.querySelector('input[type="email"]')) {
     e.preventDefault()
     e.stopPropagation()
-    var data = {}
-    new FormData(form).forEach(function (value, key) {
-      if (String(value).trim()) data[key] = value
+    if (form.getAttribute("data-oeh-sending")) return
+    var get = function (name) { var el = form.querySelector('[name="' + name + '"]'); return el ? String(el.value || "").trim() : "" }
+    var payload = {
+      form_id: "contact",
+      name: get("Name"),
+      email: get("Email"),
+      phone: get("Phone Number"),
+      message_text: get("Message")
+    }
+    // Framer's hidden honeypot inputs (only bots fill them).
+    ;["website", "company", "subject", "title", "description", "feedback", "notes", "details", "remarks", "comments"].forEach(function (k) { var v = get(k); if (v) payload[k] = v })
+    if (get("message")) payload.hp_message = get("message")
+    var btn = form.querySelector("button, [type=submit]")
+    var note = form.querySelector(".oeh-form-error")
+    if (!note) {
+      note = document.createElement("p")
+      note.className = "oeh-form-error"
+      note.setAttribute("role", "alert")
+      note.style.cssText = "font:500 14px/1.4 sans-serif;color:#b42318;margin:8px 0 0"
+      form.appendChild(note)
+    }
+    note.textContent = ""
+    form.setAttribute("data-oeh-sending", "1")
+    if (btn) btn.style.opacity = "0.6"
+    window.OEHSubmit(payload).then(function (r) {
+      form.removeAttribute("data-oeh-sending")
+      if (btn) btn.style.opacity = ""
+      if (r.ok) {
+        try { if (r.reference) sessionStorage.setItem("oeh-ref", r.reference) } catch (err) {}
+        form.innerHTML = '<p style="font:600 18px/1.4 sans-serif;padding:12px 0">Thanks. A licensed agent will contact you shortly. You can also call 239-423-2552.</p>'
+        return
+      }
+      var msgs = []
+      for (var k in r.errors) msgs.push(r.errors[k])
+      note.textContent = r.status === 422 && msgs.length ? msgs.join(". ") + "." : "We couldn't send your message. Please try again or call 239-423-2552."
     })
-    try { sessionStorage.setItem("oeh-contact", JSON.stringify(data)) } catch (err) {}
-    form.innerHTML = '<p style="font:600 18px/1.4 sans-serif;padding:12px 0">Thanks. Call 239-423-2552 and a licensed agent can walk through your options.</p>'
   }
 }, true)
 

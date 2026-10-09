@@ -112,12 +112,48 @@
       })
     }
     back.addEventListener("click", () => { if (i > 0) { i -= 1; render() } })
+    let sending = false
     function submit() {
-      bar.style.width = "100%"
-      try { sessionStorage.setItem("oeh-quote", JSON.stringify(answers)) } catch (err) {}
-      window.top.location.href = "/results"
+      if (sending) return
+      sending = true
+      const next = document.getElementById("next")
+      const err = document.getElementById("err")
+      if (next) { next.disabled = true; next.textContent = "Submitting…" }
+      let zip = ""
+      try { zip = new URLSearchParams(window.top.location.search).get("zip") || sessionStorage.getItem("oeh-zip") || "" } catch (e) {}
+      const payload = {
+        form_id: "quote-quiz",
+        coverage: answers.coverage || "",
+        age: answers.age || "",
+        income: answers.income || "",
+        doctor: answers.doctor || "",
+        state: answers.state || "",
+        name: answers.name || "",
+        phone: answers.phone || "",
+        zip: zip,
+        consent: answers.consent === true,
+        consent_text: STEPS[STEPS.length - 1].consent || ""
+      }
+      const done = (r) => {
+        sending = false
+        if (r.ok) {
+          bar.style.width = "100%"
+          try {
+            sessionStorage.setItem("oeh-quote", JSON.stringify(answers))
+            if (r.reference) sessionStorage.setItem("oeh-ref", r.reference)
+          } catch (e) {}
+          window.top.location.href = "/results"
+          return
+        }
+        if (next) { next.disabled = false; next.textContent = "Next" }
+        const msgs = Object.keys(r.errors || {}).map((k) => r.errors[k])
+        if (err) err.textContent = r.status === 422 && msgs.length ? msgs.join(". ") + "." : "We couldn't submit your request. Please try again or call 239-423-2552."
+      }
+      if (typeof window.OEHSubmit === "function") window.OEHSubmit(payload).then(done)
+      else done({ ok: false, status: 0, errors: {} })
     }
     render()
   </script>
+<script src="/oeh-forms.js"></script>
 </body>
 </html>
