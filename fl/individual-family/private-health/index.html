@@ -10,6 +10,16 @@
 
   gtag('config', 'AW-18499932819');
 </script>
+<!-- Count every tap on a phone link as a conversion -->
+<script>
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (!a) return;
+    gtag('event', 'conversion', {
+      send_to: 'AW-18499932819/R2A7CMmYhpcdEJOluvVE'
+    });
+  });
+</script>
     <meta charset="UTF-8"/>
     <title>Private Health | Open Enrollment Health</title>
     <meta name="keywords" content="Individual and family plans,Florida,Prospective member,Member"/>

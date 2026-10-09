@@ -10,6 +10,16 @@
 
   gtag('config', 'AW-18499932819');
 </script>
+<!-- Count every tap on a phone link as a conversion -->
+<script>
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (!a) return;
+    gtag('event', 'conversion', {
+      send_to: 'AW-18499932819/R2A7CMmYhpcdEJOluvVE'
+    });
+  });
+</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Understand Medicare Parts A, B, C and D, compare plans, and find coverage that fits you — with free, licensed guidance." />
