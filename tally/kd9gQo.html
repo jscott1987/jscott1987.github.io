@@ -142,7 +142,13 @@
             sessionStorage.setItem("oeh-quote", JSON.stringify(answers))
             if (r.reference) sessionStorage.setItem("oeh-ref", r.reference)
           } catch (e) {}
-          window.top.location.href = "/results"
+          // The page sandboxes this iframe (top navigation needs a live click), so ask the parent page to go to results.
+          try { window.parent.postMessage({ type: "oeh-quote-done" }, location.origin) } catch (e) {}
+          try { window.top.location.href = "/results" } catch (e) {}
+          setTimeout(function () {
+            if (next) next.textContent = "Submitted"
+            if (err) err.innerHTML = 'Submitted. <a href="/results" target="_top">Continue to your results</a>.'
+          }, 2500)
           return
         }
         if (next) { next.disabled = false; next.textContent = "Next" }

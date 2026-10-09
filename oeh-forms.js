@@ -37,6 +37,14 @@ function oehReadAttr() {
 })()
 
 // POST a lead. Resolves { ok, reference } or { ok: false, status, errors }.
+// The quote quiz runs in a sandboxed iframe that cannot navigate the page itself; it asks the page to open the results.
+if (window.top === window) {
+  window.addEventListener("message", function (e) {
+    if (e.origin !== location.origin || !e.data || e.data.type !== "oeh-quote-done") return
+    if (location.pathname !== "/results") location.href = "/results"
+  })
+}
+
 window.OEHSubmit = function (fields) {
   var attr = oehReadAttr() || {}
   var top = window.top || window
